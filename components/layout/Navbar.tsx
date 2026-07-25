@@ -22,7 +22,7 @@ export default function Navbar() {
     return (
         <>
             <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
-                <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 lg:h-20 lg:px-8">
+                <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 lg:h-20 lg:px-8">
 
                     <a href="#home" className="flex items-center" onClick={closeMenu}>
                         <Image
@@ -32,7 +32,7 @@ export default function Navbar() {
                             height={52}
                             priority
                             style={{ height: "auto" }}
-                            className="w-[110px] sm:w-[125px] lg:w-[145px]"
+                            className="w-[95px] sm:w-[115px] lg:w-[145px]"
                         />
                     </a>
 
@@ -59,7 +59,7 @@ export default function Navbar() {
                         type="button"
                         aria-label="Toggle Menu"
                         onClick={() => setIsOpen((v) => !v)}
-                        className="lg:hidden rounded-lg p-2 text-gray-700"
+                        className="lg:hidden rounded-lg p-2 mr-1 text-gray-700"
                     >
                         {isOpen ? <X size={30} /> : <Menu size={30} />}
                     </button>

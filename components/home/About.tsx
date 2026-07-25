@@ -57,11 +57,11 @@ export default function About() {
 
                 {/* Right */}
 
-                <div className="rounded-3xl bg-white p-10 shadow-xl">
+                <div className="rounded-3xl bg-white p-6 sm:p-8 lg:p-10 shadow-xl overflow-hidden">
 
-                    <div className="grid grid-cols-2 gap-6">
+                    <div className="grid grid-cols-2 gap-4 sm:gap-6">
 
-                        <div className="rounded-2xl bg-blue-50 p-8 text-center">
+                        <div className="rounded-2xl bg-blue-50 p-5 sm:p-8 text-center min-w-0">
                             <h3 className="text-4xl font-bold text-blue-700">
                                 24/7
                             </h3>
@@ -71,7 +71,7 @@ export default function About() {
                             </p>
                         </div>
 
-                        <div className="rounded-2xl bg-green-50 p-8 text-center">
+                        <div className="rounded-2xl bg-green-50 p-5 sm:p-8 text-center min-w-0">
                             <h3 className="text-4xl font-bold text-green-700">
                                 100%
                             </h3>
@@ -81,7 +81,7 @@ export default function About() {
                             </p>
                         </div>
 
-                        <div className="rounded-2xl bg-orange-50 p-8 text-center">
+                        <div className="rounded-2xl bg-orange-50 p-5 sm:p-8 text-center min-w-0">
                             <h3 className="text-4xl font-bold text-orange-700">
                                 Global
                             </h3>
@@ -91,7 +91,7 @@ export default function About() {
                             </p>
                         </div>
 
-                        <div className="rounded-2xl bg-purple-50 p-8 text-center">
+                        <div className="rounded-2xl bg-purple-50 p-5 sm:p-8 text-center min-w-0">
                             <h3 className="text-4xl font-bold text-purple-700">
                                 Secure
                             </h3>

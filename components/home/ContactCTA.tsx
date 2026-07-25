@@ -157,7 +157,7 @@ export default function ContactCTA() {
 
             <section
                 id="contact"
-                className="scroll-mt-20 bg-slate-50 py-24"
+                className="scroll-mt-20 bg-slate-50 pt-8 pb-24"
             >
                 <div className="mx-auto max-w-7xl px-6">
 

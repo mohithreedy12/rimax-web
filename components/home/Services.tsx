@@ -56,7 +56,7 @@ export default function Services() {
     return (
         <section
             id="services"
-            className="scroll-mt-24 bg-white py-16"
+            className="scroll-mt-24 bg-white pt-8 pb-16"
         >
 
             <div className="mx-auto max-w-7xl px-6">

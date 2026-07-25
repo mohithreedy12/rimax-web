@@ -1,4 +1,5 @@
 import Navbar from "@/components/layout/Navbar";
+import ScrollToTop from "../components/common/ScrollToTop";
 import Footer from "@/components/layout/Footer";
 
 import Hero from "@/components/home/Hero";
@@ -39,7 +40,11 @@ export default function Home() {
                 {/* Contact */}
                 <ContactCTA />
 
+
             </main>
+
+            {/*ScrollToTop */}
+            <ScrollToTop />
 
             {/* Footer */}
             <Footer />
