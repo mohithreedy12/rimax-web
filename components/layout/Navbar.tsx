@@ -2,16 +2,17 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
 const menuItems = [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Industries", href: "#industries" },
-    { label: "Why RiMax", href: "#why-rimax" },
-    { label: "Process", href: "#process" },
-    { label: "Contact", href: "#contact" },
+    { label: "Home", href: "/" },
+    { label: "About", href: "/#about" },
+    { label: "Services", href: "/#services" },
+    { label: "Industries", href: "/#industries" },
+    { label: "Why RiMax", href: "/#why-rimax" },
+    { label: "Process", href: "/#process" },
+    { label: "Contact", href: "/#contact" },
 ];
 
 export default function Navbar() {
@@ -21,50 +22,66 @@ export default function Navbar() {
 
     return (
         <>
-            <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
-                <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 lg:h-20 lg:px-8">
+            <header className="sticky top-0 z-50 border-b border-gray-200 bg-white shadow-sm">
 
-                    <a href="#home" className="flex items-center" onClick={closeMenu}>
+                <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 lg:h-[68px] lg:px-8">
+
+                    {/* Logo */}
+
+                    <Link href="/" className="flex items-center" onClick={closeMenu}>
+
                         <Image
                             src="/logos/rimax-logo-v2.png"
                             alt="RiMax Technologies"
-                            width={145}
-                            height={52}
+                            width={90}
+                            height={32}
                             priority
-                            style={{ height: "auto" }}
-                            className="w-[95px] sm:w-[115px] lg:w-[145px]"
+                            className="w-[70px] sm:w-[80px] lg:w-[90px] h-auto"
                         />
-                    </a>
 
-                    <nav className="hidden lg:flex items-center gap-10">
+                    </Link>
+
+                    {/* Desktop Navigation */}
+
+                    <nav className="hidden items-center gap-10 lg:flex">
+
                         {menuItems.map((item) => (
-                            <a
+                            <Link
                                 key={item.label}
                                 href={item.href}
-                                className="font-medium text-gray-700 hover:text-blue-700 transition-colors"
+                                className="font-medium text-gray-700 transition-colors hover:text-blue-700"
                             >
                                 {item.label}
-                            </a>
+                            </Link>
                         ))}
+
                     </nav>
 
-                    <a
-                        href="#contact"
-                        className="hidden lg:block rounded-xl bg-blue-700 px-6 py-3 font-semibold text-white hover:bg-blue-800 transition"
+                    {/* Desktop CTA */}
+
+                    <Link
+                        href="/#contact"
+                        className="hidden rounded-xl bg-blue-700 px-6 py-3 font-semibold text-white transition hover:bg-blue-800 lg:block"
                     >
                         Get Free Consultation
-                    </a>
+                    </Link>
+
+                    {/* Mobile Menu Button */}
 
                     <button
                         type="button"
                         aria-label="Toggle Menu"
-                        onClick={() => setIsOpen((v) => !v)}
-                        className="lg:hidden rounded-lg p-2 mr-1 text-gray-700"
+                        onClick={() => setIsOpen(!isOpen)}
+                        className="mr-1 rounded-lg p-2 text-gray-700 lg:hidden"
                     >
                         {isOpen ? <X size={30} /> : <Menu size={30} />}
                     </button>
+
                 </div>
+
             </header>
+
+            {/* Mobile Menu */}
 
             {isOpen && (
                 <>
@@ -73,29 +90,31 @@ export default function Navbar() {
                         onClick={closeMenu}
                     />
 
-                    <div className="fixed top-16 left-0 right-0 z-50 bg-white border-t shadow-xl lg:hidden">
+                    <div className="fixed left-0 right-0 top-14 z-50 border-t bg-white shadow-xl lg:hidden">
+
                         <div className="flex flex-col p-5">
 
                             {menuItems.map((item) => (
-                                <a
+                                <Link
                                     key={item.label}
                                     href={item.href}
                                     onClick={closeMenu}
-                                    className="rounded-lg px-4 py-4 text-gray-700 hover:bg-blue-50 hover:text-blue-700"
+                                    className="rounded-lg px-4 py-4 text-gray-700 transition hover:bg-blue-50 hover:text-blue-700"
                                 >
                                     {item.label}
-                                </a>
+                                </Link>
                             ))}
 
-                            <a
-                                href="#contact"
+                            <Link
+                                href="/#contact"
                                 onClick={closeMenu}
-                                className="mt-4 rounded-xl bg-blue-700 py-3 text-center font-semibold text-white hover:bg-blue-800"
+                                className="mt-4 rounded-xl bg-blue-700 py-3 text-center font-semibold text-white transition hover:bg-blue-800"
                             >
                                 Get Free Consultation
-                            </a>
+                            </Link>
 
                         </div>
+
                     </div>
                 </>
             )}

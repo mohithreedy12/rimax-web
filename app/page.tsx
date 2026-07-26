@@ -1,7 +1,3 @@
-import Navbar from "@/components/layout/Navbar";
-import ScrollToTop from "../components/common/ScrollToTop";
-import Footer from "@/components/layout/Footer";
-
 import Hero from "@/components/home/Hero";
 import About from "@/components/home/About";
 import Services from "@/components/home/Services";
@@ -12,42 +8,29 @@ import ContactCTA from "@/components/home/ContactCTA";
 
 export default function Home() {
     return (
-        <>
-            {/* Navigation */}
-            <Navbar />
+        <main className="min-h-screen">
 
-            {/* Main Content */}
-            <main className="min-h-screen">
+            {/* Hero */}
+            <Hero />
 
-                {/* Hero */}
-                <Hero />
+            {/* About */}
+            <About />
 
-                {/* About */}
-                <About />
+            {/* Services */}
+            <Services />
 
-                {/* Services */}
-                <Services />
+            {/* Industries */}
+            <Industries />
 
-                {/* Industries */}
-                <Industries />
+            {/* Why RiMax */}
+            <WhyRiMax />
 
-                {/* Why RiMax */}
-                <WhyRiMax />
+            {/* Process */}
+            <HowWeWork />
 
-                {/* Process */}
-                <HowWeWork />
+            {/* Contact */}
+            <ContactCTA />
 
-                {/* Contact */}
-                <ContactCTA />
-
-
-            </main>
-
-            {/*ScrollToTop */}
-            <ScrollToTop />
-
-            {/* Footer */}
-            <Footer />
-        </>
+        </main>
     );
 }

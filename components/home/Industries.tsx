@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
     HeartPulse,
     ShoppingCart,
@@ -5,6 +6,7 @@ import {
     RadioTower,
     Cloud,
     Truck,
+    ArrowRight,
 } from "lucide-react";
 
 const industries = [
@@ -14,6 +16,7 @@ const industries = [
         description:
             "HIPAA-aware customer support, appointment assistance, and patient engagement.",
         color: "bg-red-50 text-red-600",
+        href: "/industries/healthcare",
     },
     {
         icon: ShoppingCart,
@@ -21,6 +24,7 @@ const industries = [
         description:
             "Live chat, order tracking, returns, and customer service for online stores.",
         color: "bg-blue-50 text-blue-600",
+        href: "/industries/ecommerce",
     },
     {
         icon: Landmark,
@@ -28,6 +32,7 @@ const industries = [
         description:
             "Secure support operations for banking, insurance, and financial services.",
         color: "bg-green-50 text-green-600",
+        href: "/industries/banking-finance",
     },
     {
         icon: RadioTower,
@@ -35,6 +40,7 @@ const industries = [
         description:
             "Technical support and customer assistance for telecom providers.",
         color: "bg-orange-50 text-orange-600",
+        href: "/industries/telecommunications",
     },
     {
         icon: Cloud,
@@ -42,6 +48,7 @@ const industries = [
         description:
             "Technical support, onboarding, and customer success for software companies.",
         color: "bg-purple-50 text-purple-600",
+        href: "/industries/saas-technology",
     },
     {
         icon: Truck,
@@ -49,6 +56,7 @@ const industries = [
         description:
             "Shipment tracking, dispatch support, and supply chain customer service.",
         color: "bg-cyan-50 text-cyan-600",
+        href: "/industries/logistics",
     },
 ];
 
@@ -82,9 +90,10 @@ export default function Industries() {
                         const Icon = industry.icon;
 
                         return (
-                            <div
+                            <Link
                                 key={industry.title}
-                                className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-2xl"
+                                href={industry.href}
+                                className="group rounded-3xl border border-gray-200 bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer"
                             >
                                 <div
                                     className={`mb-6 inline-flex rounded-2xl p-4 ${industry.color}`}
@@ -92,14 +101,22 @@ export default function Industries() {
                                     <Icon size={34} />
                                 </div>
 
-                                <h3 className="mb-4 text-2xl font-bold">
+                                <h3 className="mb-4 text-2xl font-bold text-gray-900">
                                     {industry.title}
                                 </h3>
 
-                                <p className="leading-7 text-gray-600">
+                                <p className="mb-6 leading-7 text-gray-600">
                                     {industry.description}
                                 </p>
-                            </div>
+
+                                <div className="flex items-center font-semibold text-blue-700 transition-all duration-300 group-hover:translate-x-1">
+                                    Learn More
+                                    <ArrowRight
+                                        size={18}
+                                        className="ml-2"
+                                    />
+                                </div>
+                            </Link>
                         );
                     })}
 

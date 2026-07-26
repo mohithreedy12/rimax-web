@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
     MessageSquare,
     Mail,
@@ -14,6 +15,7 @@ const services = [
         description:
             "Real-time customer engagement across websites and applications.",
         color: "bg-blue-50 text-blue-700",
+        link: "/services/live-chat-support",
     },
     {
         icon: Mail,
@@ -21,6 +23,7 @@ const services = [
         description:
             "Professional email handling with fast response times.",
         color: "bg-green-50 text-green-700",
+        link: "/services/email-support",
     },
     {
         icon: Headphones,
@@ -28,6 +31,7 @@ const services = [
         description:
             "Friendly multi-channel customer assistance available 24/7.",
         color: "bg-orange-50 text-orange-700",
+        link: "/services/customer-support",
     },
     {
         icon: Monitor,
@@ -35,6 +39,7 @@ const services = [
         description:
             "Troubleshooting software and technical issues efficiently.",
         color: "bg-purple-50 text-purple-700",
+        link: "/services/technical-support",
     },
     {
         icon: Users,
@@ -42,6 +47,7 @@ const services = [
         description:
             "Build an extended support team tailored to your business.",
         color: "bg-cyan-50 text-cyan-700",
+        link: "/services/dedicated-teams",
     },
     {
         icon: Bot,
@@ -49,6 +55,7 @@ const services = [
         description:
             "Coming soon — AI-powered customer support automation.",
         color: "bg-pink-50 text-pink-700",
+        link: "/services/ai-automation",
     },
 ];
 
@@ -58,7 +65,6 @@ export default function Services() {
             id="services"
             className="scroll-mt-24 bg-white pt-8 pb-16"
         >
-
             <div className="mx-auto max-w-7xl px-6">
 
                 <div className="mx-auto mb-16 max-w-3xl text-center">
@@ -84,13 +90,13 @@ export default function Services() {
                     {services.map((service) => {
                         const Icon = service.icon;
 
-                        return (
+                        const Card = (
                             <div
-                                key={service.title}
-                                className="group rounded-3xl border border-gray-200 bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-xl"
+                                className="group rounded-3xl border border-gray-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-blue-500 hover:shadow-xl"
                             >
-
-                                <div className={`mb-6 flex h-16 w-16 items-center justify-center rounded-2xl ${service.color}`}>
+                                <div
+                                    className={`mb-6 flex h-16 w-16 items-center justify-center rounded-2xl ${service.color}`}
+                                >
                                     <Icon size={32} />
                                 </div>
 
@@ -102,14 +108,31 @@ export default function Services() {
                                     {service.description}
                                 </p>
 
+                                {service.link !== "#" && (
+                                    <p className="mt-6 font-semibold text-blue-700 transition group-hover:translate-x-1">
+                                        Learn More →
+                                    </p>
+                                )}
                             </div>
+                        );
+
+                        return service.link === "#" ? (
+                            <div key={service.title}>
+                                {Card}
+                            </div>
+                        ) : (
+                            <Link
+                                key={service.title}
+                                href={service.link}
+                            >
+                                {Card}
+                            </Link>
                         );
                     })}
 
                 </div>
 
             </div>
-
         </section>
     );
 }

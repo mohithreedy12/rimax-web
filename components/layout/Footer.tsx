@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import {
     Mail,
     MapPin,
@@ -37,9 +38,12 @@ export default function Footer() {
 
                             <Mail size={18} className="text-blue-400" />
 
-                            <span className="text-gray-300">
-                hello@rimaxtechnologies.com
-              </span>
+                            <a
+                                href="mailto:contact@rimaxtech.com"
+                                className="text-gray-300 transition hover:text-white"
+                            >
+                                contact@rimaxtech.com
+                            </a>
 
                         </div>
 
@@ -75,31 +79,56 @@ export default function Footer() {
                         Quick Links
                     </h3>
 
-                    <ul className="space-y-4 text-gray-400">
+                    <ul className="space-y-4">
 
-                        <li className="flex items-center gap-2 hover:text-white cursor-pointer">
-                            <ArrowRight size={16}/>
-                            Home
+                        <li>
+                            <Link
+                                href="/"
+                                className="flex items-center gap-2 text-gray-400 transition hover:text-white"
+                            >
+                                <ArrowRight size={16} />
+                                Home
+                            </Link>
                         </li>
 
-                        <li className="flex items-center gap-2 hover:text-white cursor-pointer">
-                            <ArrowRight size={16}/>
-                            About
+                        <li>
+                            <Link
+                                href="/#about"
+                                className="flex items-center gap-2 text-gray-400 transition hover:text-white"
+                            >
+                                <ArrowRight size={16} />
+                                About
+                            </Link>
                         </li>
 
-                        <li className="flex items-center gap-2 hover:text-white cursor-pointer">
-                            <ArrowRight size={16}/>
-                            Services
+                        <li>
+                            <Link
+                                href="/#services"
+                                className="flex items-center gap-2 text-gray-400 transition hover:text-white"
+                            >
+                                <ArrowRight size={16} />
+                                Services
+                            </Link>
                         </li>
 
-                        <li className="flex items-center gap-2 hover:text-white cursor-pointer">
-                            <ArrowRight size={16}/>
-                            Industries
+                        <li>
+                            <Link
+                                href="/#industries"
+                                className="flex items-center gap-2 text-gray-400 transition hover:text-white"
+                            >
+                                <ArrowRight size={16} />
+                                Industries
+                            </Link>
                         </li>
 
-                        <li className="flex items-center gap-2 hover:text-white cursor-pointer">
-                            <ArrowRight size={16}/>
-                            Contact
+                        <li>
+                            <Link
+                                href="/#contact"
+                                className="flex items-center gap-2 text-gray-400 transition hover:text-white"
+                            >
+                                <ArrowRight size={16} />
+                                Contact
+                            </Link>
                         </li>
 
                     </ul>
