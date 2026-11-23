@@ -1,234 +1,369 @@
 import Link from "next/link";
+
 import {
     Mail,
-    Clock3,
-    ShieldCheck,
-    Globe2,
-    Users,
-    TrendingUp,
-    ArrowRight,
-    CheckCircle2,
     Inbox,
-    Zap,
+    Clock3,
+    CheckCircle2,
+    ArrowUpRight,
+    ChevronDown,
+    ShoppingCart,
+    MessageSquare,
+    FileText,
+    BarChart3,
+    Users,
+    Settings,
+    ClipboardList,
+    Send,
+    ShieldCheck,
+    CalendarDays,
 } from "lucide-react";
 
-const features = [
+/* ==================================
+   WHAT EMAIL SUPPORT INCLUDES
+================================== */
+
+const services = [
     {
-        icon: Mail,
-        title: "Professional Email Handling",
+        icon: Inbox,
+        title: "Inbox Management",
         description:
-            "Our specialists professionally manage incoming customer emails while maintaining your brand voice.",
+            "Organise incoming emails, categorise requests, and prioritise important customer enquiries.",
     },
     {
-        icon: Clock3,
-        title: "Fast Response Times",
+        icon: MessageSquare,
+        title: "Customer Enquiries",
         description:
-            "Deliver timely responses that improve customer satisfaction and build trust.",
+            "Respond to product questions, service enquiries, and general customer requests.",
     },
     {
-        icon: Users,
-        title: "Dedicated Email Agents",
+        icon: ShoppingCart,
+        title: "Order & Refund Support",
         description:
-            "Experienced professionals work as an extension of your business and represent your company professionally.",
+            "Assist with order updates, delivery questions, returns, and refund requests.",
     },
     {
-        icon: Globe2,
-        title: "Global Customer Coverage",
-        description:
-            "Support customers across multiple countries and time zones with reliable service.",
-    },
-    {
-        icon: TrendingUp,
+        icon: ClipboardList,
         title: "Ticket Management",
         description:
-            "Efficiently organize, prioritize, and resolve customer requests with structured workflows.",
+            "Track customer issues, maintain records, and escalate unresolved requests.",
     },
     {
-        icon: ShieldCheck,
-        title: "Secure Communication",
+        icon: Send,
+        title: "Follow-Up Emails",
         description:
-            "Customer information is handled with confidentiality and professional security practices.",
+            "Send approved follow-ups and keep customers informed about pending requests.",
+    },
+    {
+        icon: BarChart3,
+        title: "Email Reporting",
+        description:
+            "Share agreed reports on email volumes, pending requests, and recurring issues.",
     },
 ];
 
-const benefits = [
-    "Professional email communication",
-    "Reduced response times",
-    "Improved customer satisfaction",
-    "Consistent brand voice",
-    "Scalable support teams",
-    "Organized ticket management",
-    "Reliable business communication",
-    "Higher customer retention",
+/* ==================================
+   WHO NEEDS EMAIL SUPPORT
+================================== */
+
+const audiences = [
+    "E-commerce stores managing orders and returns",
+    "D2C brands handling product enquiries",
+    "Growing businesses with increasing email volumes",
+    "Service providers managing customer requests",
 ];
+
+/* ==================================
+   HOW RIMAX DELIVERS
+================================== */
+
+const process = [
+    {
+        number: "01",
+        title: "Understand",
+        description:
+            "We review your email volume, customer needs, policies, and preferred support hours.",
+    },
+    {
+        number: "02",
+        title: "Set Up",
+        description:
+            "We configure agreed workflows, email templates, access, and escalation procedures.",
+    },
+    {
+        number: "03",
+        title: "Manage",
+        description:
+            "Our team handles customer emails according to your approved guidelines.",
+    },
+    {
+        number: "04",
+        title: "Improve",
+        description:
+            "We review pending requests, share updates, and refine communication processes.",
+    },
+];
+
+/* ==================================
+   CLIENT REQUIREMENTS
+================================== */
+
+const requirements = [
+    "Access to your email inbox or helpdesk platform",
+    "Product details, policies, and customer FAQs",
+    "Approved email templates and brand guidelines",
+    "Escalation contacts and response expectations",
+];
+
+/* ==================================
+   ENGAGEMENT MODELS
+================================== */
+
+const packages = [
+    {
+        title: "Part-Time Support",
+        subtitle: "For smaller email volumes",
+        icon: Clock3,
+        features: [
+            "Scheduled inbox monitoring",
+            "Customer email responses",
+            "Basic follow-up management",
+        ],
+    },
+    {
+        title: "Dedicated Email Support",
+        subtitle: "For regular customer enquiries",
+        icon: Users,
+        features: [
+            "Assigned email support resources",
+            "Organised ticket handling",
+            "Regular reporting and coordination",
+        ],
+    },
+    {
+        title: "Custom Coverage",
+        subtitle: "For specific business requirements",
+        icon: CalendarDays,
+        features: [
+            "Flexible staffing arrangements",
+            "Extended or 24/7 coverage options",
+            "Custom workflows and escalation rules",
+        ],
+    },
+];
+
+/* ==================================
+   EMAIL SUPPORT FAQs
+================================== */
+
+const faqs = [
+    {
+        question: "Can RiMax manage our existing email inbox?",
+        answer:
+            "Yes. We can work with your existing email or helpdesk platform, subject to the required access and system capabilities.",
+    },
+    {
+        question: "Can you handle order and refund emails?",
+        answer:
+            "Yes. We can assist with order updates, returns, and refund enquiries according to your approved business policies.",
+    },
+    {
+        question: "Can you provide 24/7 email support?",
+        answer:
+            "Yes. Extended or 24/7 coverage can be arranged based on your requirements, onboarding timeline, and agreed staffing plan.",
+    },
+    {
+        question: "How do you maintain our brand voice?",
+        answer:
+            "We follow your approved email templates, communication guidelines, product information, and escalation procedures.",
+    },
+    {
+        question: "What happens to complicated customer requests?",
+        answer:
+            "Requests outside the agreed support scope are documented and escalated to your designated contact or responsible team.",
+    },
+    {
+        question: "Can we start with a smaller package?",
+        answer:
+            "Yes. We can discuss limited-hours support initially and adjust the arrangement as your email volume grows.",
+    },
+];
+
+/* ==================================
+   REUSABLE SECTION HEADING
+================================== */
+
+function SectionHeading({
+                            label,
+                            title,
+                            description,
+                        }: {
+    label: string;
+    title: string;
+    description?: string;
+}) {
+    return (
+        <div className="mb-9 text-center">
+
+            <p className="mb-3 text-sm font-bold uppercase tracking-[3px] text-emerald-700">
+                {label}
+            </p>
+
+            <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                {title}
+            </h2>
+
+            {description && (
+                <p className="mx-auto mt-4 max-w-2xl text-gray-600">
+                    {description}
+                </p>
+            )}
+
+        </div>
+    );
+}
+
+/* ==================================
+   MAIN COMPONENT
+================================== */
 
 export default function EmailSupportPage() {
     return (
-        <main className="bg-white">
+        <main className="overflow-hidden bg-white">
 
-            {/* HERO */}
+            {/* ==================================
+                HERO
+            ================================== */}
 
-            <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-emerald-50 to-cyan-100">
+            <section className="bg-gradient-to-br from-slate-50 via-emerald-50 to-white">
 
-                <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-emerald-400/20 blur-3xl"></div>
+                <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 py-14 lg:grid-cols-2 lg:py-20">
 
-                <div className="absolute right-0 top-20 h-[420px] w-[420px] rounded-full bg-cyan-400/20 blur-3xl"></div>
+                    {/* LEFT */}
 
-                <div className="absolute bottom-0 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-emerald-500/10 blur-3xl"></div>
+                    <div>
 
-                <div
-                    className="absolute inset-0 opacity-[0.05]"
-                    style={{
-                        backgroundImage:
-                            "linear-gradient(to right,#10b981 1px,transparent 1px),linear-gradient(to bottom,#10b981 1px,transparent 1px)",
-                        backgroundSize: "45px 45px",
-                    }}
-                />
+                        <p className="mb-4 text-sm font-bold uppercase tracking-[3px] text-emerald-700">
+                            RiMax Customer Experience Solutions
+                        </p>
 
-                <div className="relative mx-auto max-w-7xl px-6 py-24">
+                        <h1 className="text-4xl font-extrabold leading-tight text-gray-900 sm:text-5xl lg:text-6xl">
+                            Professional
+                            <span className="block text-emerald-700">
+                                Email Support
+                            </span>
+                            for Your Business
+                        </h1>
 
-                    <div className="grid items-center gap-16 lg:grid-cols-2">
+                        <p className="mt-6 max-w-xl text-lg leading-8 text-gray-600">
+                            Keep customer communication organised
+                            with professional email management,
+                            timely responses, structured ticket handling,
+                            and reliable follow-ups.
+                        </p>
 
-                        {/* LEFT */}
+                        <div className="mt-8 flex flex-wrap gap-4">
 
-                        <div>
+                            <Link
+                                href="/#contact"
+                                className="inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-7 py-4 font-semibold text-white shadow-lg transition hover:bg-emerald-800"
+                            >
+                                Get Free Consultation
+                                <ArrowUpRight size={19} />
+                            </Link>
 
-              <span className="rounded-full bg-emerald-100 px-5 py-2 text-sm font-semibold uppercase tracking-widest text-emerald-700">
-                RiMax Technologies
-              </span>
+                            <a
+                                href="#email-services"
+                                className="rounded-xl border border-gray-300 bg-white px-7 py-4 font-semibold text-gray-800 transition hover:border-emerald-500"
+                            >
+                                Explore Email Support
+                            </a>
 
-                            <h1 className="mt-8 text-5xl font-extrabold leading-tight text-gray-900 lg:text-7xl">
-                                Professional
-                                <span className="block bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-500 bg-clip-text text-transparent">
-                  Email Support
-                </span>
-                            </h1>
+                        </div>
 
-                            <p className="mt-8 text-xl leading-9 text-gray-600">
+                        <div className="mt-8 flex flex-wrap gap-4 text-sm font-medium text-gray-700">
 
-                                Deliver exceptional customer experiences through
-                                reliable, professional email support.
+                            <span className="flex items-center gap-2">
+                                <CheckCircle2 size={18} className="text-emerald-700" />
+                                Organised Inbox
+                            </span>
 
-                                Our experienced email specialists respond quickly,
-                                resolve customer issues efficiently,
-                                manage support tickets,
-                                and ensure every interaction reflects your brand's professionalism.
+                            <span className="flex items-center gap-2">
+                                <CheckCircle2 size={18} className="text-emerald-700" />
+                                Professional Replies
+                            </span>
 
-                            </p>
+                            <span className="flex items-center gap-2">
+                                <CheckCircle2 size={18} className="text-emerald-700" />
+                                Flexible Coverage
+                            </span>
 
-                            <div className="mt-10 flex flex-wrap gap-5">
+                        </div>
 
-                                <Link
-                                    href="/#contact"
-                                    className="rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-8 py-4 font-semibold text-white shadow-xl transition hover:-translate-y-1 hover:shadow-2xl"
-                                >
-                                    Get Free Consultation
-                                </Link>
+                    </div>
 
-                                <Link
-                                    href="/#services"
-                                    className="rounded-xl border border-gray-300 bg-white/80 px-8 py-4 font-semibold text-gray-700 backdrop-blur transition hover:bg-white"
-                                >
-                                    Explore Services
-                                </Link>
+                    {/* RIGHT - EMAIL PREVIEW */}
+
+                    <div className="rounded-3xl border border-emerald-100 bg-white p-6 shadow-xl">
+
+                        <div className="flex items-center gap-3 border-b border-gray-100 pb-5">
+
+                            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100">
+                                <Mail size={25} className="text-emerald-700" />
+                            </div>
+
+                            <div>
+                                <h2 className="font-bold text-gray-900">
+                                    Customer Email Support
+                                </h2>
+
+                                <p className="text-sm text-gray-500">
+                                    Example email response
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div className="mt-6 space-y-4">
+
+                            <div className="rounded-xl bg-gray-50 p-4">
+
+                                <p className="text-xs font-semibold uppercase text-gray-500">
+                                    Customer Enquiry
+                                </p>
+
+                                <p className="mt-2 font-semibold text-gray-900">
+                                    Subject: Order Delivery Update
+                                </p>
+
+                                <p className="mt-3 text-sm leading-7 text-gray-600">
+                                    Hello, I placed an order recently.
+                                    Could you please help me check
+                                    its delivery status?
+                                </p>
 
                             </div>
 
-                            <div className="mt-14 grid grid-cols-3 gap-6">
+                            <div className="rounded-xl bg-emerald-50 p-4">
 
-                                <div>
-                                    <h3 className="text-3xl font-bold text-emerald-700">
-                                        24/7
-                                    </h3>
-                                    <p className="mt-2 text-gray-600">
-                                        Email Coverage
-                                    </p>
-                                </div>
+                                <p className="text-xs font-semibold uppercase text-emerald-700">
+                                    Support Response
+                                </p>
 
-                                <div>
-                                    <h3 className="text-3xl font-bold text-emerald-700">
-                                        Fast
-                                    </h3>
-                                    <p className="mt-2 text-gray-600">
-                                        Responses
-                                    </p>
-                                </div>
-
-                                <div>
-                                    <h3 className="text-3xl font-bold text-emerald-700">
-                                        Global
-                                    </h3>
-                                    <p className="mt-2 text-gray-600">
-                                        Support
-                                    </p>
-                                </div>
+                                <p className="mt-3 text-sm leading-7 text-gray-700">
+                                    Hello! Thank you for contacting us.
+                                    Please share your order number so
+                                    we can review the available shipping
+                                    information and assist you further.
+                                </p>
 
                             </div>
 
                         </div>
 
-                        {/* RIGHT */}
-
-                        <div className="relative">
-
-                            <div className="absolute -right-4 -top-4 rounded-2xl bg-white px-6 py-4 shadow-xl">
-                                <p className="font-semibold text-emerald-600">
-                                    ✓ Fast Replies
-                                </p>
-                            </div>
-
-                            <div className="absolute -bottom-4 -left-4 rounded-2xl bg-white px-6 py-4 shadow-xl">
-                                <p className="font-semibold text-teal-700">
-                                    📧 Inbox Managed
-                                </p>
-                            </div>
-
-                            <div className="rounded-[32px] border border-white/50 bg-white/70 p-10 shadow-2xl backdrop-blur-xl">
-
-                                <div className="mb-8 flex h-24 w-24 items-center justify-center rounded-3xl bg-gradient-to-br from-emerald-100 to-cyan-100">
-
-                                    <Inbox
-                                        size={48}
-                                        className="text-emerald-700"
-                                    />
-
-                                </div>
-
-                                <h2 className="text-4xl font-bold text-gray-900">
-                                    Every Email Matters
-                                </h2>
-
-                                <p className="mt-6 text-lg leading-8 text-gray-600">
-
-                                    Our email support specialists ensure every customer
-                                    receives accurate,
-                                    timely,
-                                    and professional responses while maintaining
-                                    your company's communication standards.
-
-                                </p>
-
-                                <div className="mt-10 space-y-4">
-
-                                    <div className="flex items-center gap-3 rounded-xl bg-emerald-50 p-4">
-                                        <CheckCircle2 className="text-emerald-700" />
-                                        <span>Professional Email Communication</span>
-                                    </div>
-
-                                    <div className="flex items-center gap-3 rounded-xl bg-emerald-50 p-4">
-                                        <CheckCircle2 className="text-emerald-700" />
-                                        <span>Organized Ticket Handling</span>
-                                    </div>
-
-                                    <div className="flex items-center gap-3 rounded-xl bg-emerald-50 p-4">
-                                        <CheckCircle2 className="text-emerald-700" />
-                                        <span>Quick Customer Resolution</span>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
+                        <div className="mt-5 flex items-center gap-2 text-sm font-medium text-emerald-700">
+                            <ShieldCheck size={18} />
+                            Brand-aligned customer communication
                         </div>
 
                     </div>
@@ -237,92 +372,50 @@ export default function EmailSupportPage() {
 
             </section>
 
-            {/* ABOUT */}
+            {/* ==================================
+                WHAT SERVICE INCLUDES
+            ================================== */}
 
-            <section className="py-20">
-
-                <div className="mx-auto max-w-6xl px-6 text-center">
-
-          <span className="text-sm font-semibold uppercase tracking-widest text-emerald-700">
-            WHAT WE OFFER
-          </span>
-
-                    <h2 className="mt-4 text-5xl font-bold text-gray-900">
-                        Professional Email Support Services
-                    </h2>
-
-                    <p className="mx-auto mt-8 max-w-4xl text-lg leading-9 text-gray-600">
-
-                        Email remains one of the most important communication channels
-                        between businesses and customers. RiMax Technologies delivers
-                        professional email support that helps companies manage customer
-                        inquiries, technical questions, complaints, billing requests,
-                        and service-related conversations with speed, accuracy,
-                        and professionalism.
-
-                    </p>
-
-                </div>
-
-            </section>
-
-            {/* FEATURES */}
-
-            <section className="bg-gray-50 py-20">
+            <section
+                id="email-services"
+                className="scroll-mt-24 py-14 sm:py-16"
+            >
 
                 <div className="mx-auto max-w-7xl px-6">
 
-                    <div className="text-center">
+                    <SectionHeading
+                        label="What's Included"
+                        title="What Our Email Support Covers"
+                        description="Practical email management solutions tailored to your customer communication needs."
+                    />
 
-            <span className="text-sm font-semibold uppercase tracking-widest text-emerald-700">
-              FEATURES
-            </span>
+                    <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
 
-                        <h2 className="mt-4 text-5xl font-bold text-gray-900">
-                            Complete Email Support Solutions
-                        </h2>
+                        {services.map((service) => {
 
-                        <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-600">
-                            RiMax Technologies delivers reliable email support services
-                            that help businesses respond faster, organize customer
-                            requests, and maintain excellent communication with every
-                            customer.
-                        </p>
-
-                    </div>
-
-                    <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-
-                        {features.map((feature) => {
-                            const Icon = feature.icon;
+                            const Icon = service.icon;
 
                             return (
-
                                 <div
-                                    key={feature.title}
-                                    className="group rounded-3xl border border-gray-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-emerald-300 hover:shadow-2xl"
+                                    key={service.title}
+                                    className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-emerald-300 hover:shadow-md"
                                 >
 
-                                    <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-100 transition group-hover:bg-emerald-600">
-
-                                        <Icon
-                                            size={32}
-                                            className="text-emerald-700 transition group-hover:text-white"
-                                        />
-
+                                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50">
+                                        <Icon size={24} className="text-emerald-700" />
                                     </div>
 
-                                    <h3 className="mb-4 text-2xl font-bold text-gray-900">
-                                        {feature.title}
+                                    <h3 className="mb-2 text-lg font-bold text-gray-900">
+                                        {service.title}
                                     </h3>
 
-                                    <p className="leading-8 text-gray-600">
-                                        {feature.description}
+                                    <p className="text-sm leading-7 text-gray-600">
+                                        {service.description}
                                     </p>
 
                                 </div>
-
                             );
+
                         })}
 
                     </div>
@@ -331,86 +424,79 @@ export default function EmailSupportPage() {
 
             </section>
 
-            {/* BENEFITS */}
+            {/* ==================================
+                WHO NEEDS + CLIENT REQUIREMENTS
+            ================================== */}
 
-            <section className="py-20">
+            <section className="bg-gray-50 py-14 sm:py-16">
 
-                <div className="mx-auto max-w-7xl px-6">
+                <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-2">
 
-                    <div className="grid items-center gap-20 lg:grid-cols-2">
+                    {/* WHO NEEDS */}
 
-                        <div>
+                    <div className="rounded-3xl bg-white p-7 shadow-sm">
 
-              <span className="text-sm font-semibold uppercase tracking-widest text-emerald-700">
-                WHY RIMAX
-              </span>
+                        <div className="mb-5 flex items-center gap-3">
 
-                            <h2 className="mt-4 text-5xl font-bold text-gray-900">
-                                Why Choose Our Email Support?
+                            <Users size={26} className="text-emerald-700" />
+
+                            <h2 className="text-2xl font-bold text-gray-900">
+                                Who Needs Email Support?
                             </h2>
-
-                            <p className="mt-8 text-lg leading-8 text-gray-600">
-
-                                Email communication often creates the first impression of
-                                your company. Our trained support professionals respond
-                                professionally, resolve customer concerns quickly, and
-                                ensure every email reflects your brand's commitment to
-                                excellent customer service.
-
-                            </p>
-
-                            <div className="mt-10 grid gap-5">
-
-                                {benefits.map((benefit) => (
-
-                                    <div
-                                        key={benefit}
-                                        className="flex items-center gap-4 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm"
-                                    >
-
-                                        <CheckCircle2
-                                            className="text-emerald-700"
-                                            size={24}
-                                        />
-
-                                        <span className="text-lg font-medium text-gray-800">
-                      {benefit}
-                    </span>
-
-                                    </div>
-
-                                ))}
-
-                            </div>
 
                         </div>
 
-                        <div>
+                        <div className="space-y-4">
 
-                            <div className="rounded-[32px] bg-gradient-to-br from-emerald-600 to-teal-700 p-10 text-white shadow-2xl">
+                            {audiences.map((item) => (
+                                <div key={item} className="flex items-start gap-3">
 
-                                <Zap
-                                    size={60}
-                                    className="mb-8"
-                                />
+                                    <CheckCircle2
+                                        size={20}
+                                        className="mt-1 shrink-0 text-emerald-700"
+                                    />
 
-                                <h3 className="text-4xl font-bold">
-                                    Professional.
-                                    Organized.
-                                    Reliable.
-                                </h3>
+                                    <p className="leading-7 text-gray-600">
+                                        {item}
+                                    </p>
 
-                                <p className="mt-6 text-lg leading-8 text-emerald-100">
+                                </div>
+                            ))}
 
-                                    Our email specialists ensure customer inquiries never go
-                                    unanswered. We organize incoming requests, prioritize
-                                    urgent issues, maintain professional communication,
-                                    and provide timely resolutions that improve customer
-                                    satisfaction and business efficiency.
+                        </div>
 
-                                </p>
+                    </div>
 
-                            </div>
+                    {/* CLIENT REQUIREMENTS */}
+
+                    <div className="rounded-3xl bg-white p-7 shadow-sm">
+
+                        <div className="mb-5 flex items-center gap-3">
+
+                            <FileText size={26} className="text-emerald-700" />
+
+                            <h2 className="text-2xl font-bold text-gray-900">
+                                What We Need From You
+                            </h2>
+
+                        </div>
+
+                        <div className="space-y-4">
+
+                            {requirements.map((item) => (
+                                <div key={item} className="flex items-start gap-3">
+
+                                    <CheckCircle2
+                                        size={20}
+                                        className="mt-1 shrink-0 text-emerald-700"
+                                    />
+
+                                    <p className="leading-7 text-gray-600">
+                                        {item}
+                                    </p>
+
+                                </div>
+                            ))}
 
                         </div>
 
@@ -420,47 +506,203 @@ export default function EmailSupportPage() {
 
             </section>
 
-            {/* CTA */}
+            {/* ==================================
+                HOW RIMAX DELIVERS
+            ================================== */}
 
-            <section className="relative overflow-hidden bg-gradient-to-r from-emerald-600 to-teal-700 py-24 text-white">
+            <section className="py-14 sm:py-16">
 
-                <div className="absolute inset-0 opacity-10">
+                <div className="mx-auto max-w-7xl px-6">
 
-                    <div
-                        className="h-full w-full"
-                        style={{
-                            backgroundImage:
-                                "linear-gradient(to right,#ffffff 1px,transparent 1px),linear-gradient(to bottom,#ffffff 1px,transparent 1px)",
-                            backgroundSize: "45px 45px",
-                        }}
+                    <SectionHeading
+                        label="Our Process"
+                        title="How RiMax Manages Your Emails"
                     />
+
+                    <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+
+                        {process.map((step) => (
+                            <div
+                                key={step.number}
+                                className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm"
+                            >
+
+                                <span className="text-3xl font-extrabold text-emerald-600">
+                                    {step.number}
+                                </span>
+
+                                <h3 className="mt-4 text-xl font-bold text-gray-900">
+                                    {step.title}
+                                </h3>
+
+                                <p className="mt-3 text-sm leading-7 text-gray-600">
+                                    {step.description}
+                                </p>
+
+                            </div>
+                        ))}
+
+                    </div>
 
                 </div>
 
-                <div className="relative mx-auto max-w-5xl px-6 text-center">
+            </section>
 
-                    <h2 className="text-5xl font-bold">
-                        Ready to Improve Your Email Support?
+            {/* ==================================
+                ENGAGEMENT MODELS
+            ================================== */}
+
+            <section className="bg-gray-50 py-14 sm:py-16">
+
+                <div className="mx-auto max-w-7xl px-6">
+
+                    <SectionHeading
+                        label="Flexible Support"
+                        title="Email Support Engagement Models"
+                        description="Choose an arrangement based on your email volume, support schedule, and business needs."
+                    />
+
+                    <div className="grid gap-5 md:grid-cols-3">
+
+                        {packages.map((item, index) => {
+
+                            const Icon = item.icon;
+
+                            return (
+                                <div
+                                    key={item.title}
+                                    className={`flex flex-col rounded-2xl border p-6 shadow-sm ${
+                                        index === 1
+                                            ? "border-emerald-400 bg-emerald-50"
+                                            : "border-gray-200 bg-white"
+                                    }`}
+                                >
+
+                                    <Icon size={30} className="text-emerald-700" />
+
+                                    <h3 className="mt-4 text-xl font-bold text-gray-900">
+                                        {item.title}
+                                    </h3>
+
+                                    <p className="mt-2 text-sm text-gray-600">
+                                        {item.subtitle}
+                                    </p>
+
+                                    <div className="mt-5 flex-grow space-y-3">
+
+                                        {item.features.map((feature) => (
+                                            <div
+                                                key={feature}
+                                                className="flex items-start gap-2"
+                                            >
+
+                                                <CheckCircle2
+                                                    size={18}
+                                                    className="mt-1 shrink-0 text-emerald-700"
+                                                />
+
+                                                <span className="text-sm leading-6 text-gray-700">
+                                                    {feature}
+                                                </span>
+
+                                            </div>
+                                        ))}
+
+                                    </div>
+
+                                    <Link
+                                        href="/#contact"
+                                        className="mt-7 rounded-xl bg-emerald-700 px-5 py-3 text-center font-semibold text-white transition hover:bg-emerald-800"
+                                    >
+                                        Discuss This Option
+                                    </Link>
+
+                                </div>
+                            );
+
+                        })}
+
+                    </div>
+
+                    <p className="mt-5 text-center text-sm text-gray-500">
+                        Coverage, staffing, pricing, and responsibilities
+                        are confirmed during consultation.
+                    </p>
+
+                </div>
+
+            </section>
+
+            {/* ==================================
+                FAQ
+            ================================== */}
+
+            <section className="py-14 sm:py-16">
+
+                <div className="mx-auto max-w-6xl px-6">
+
+                    <SectionHeading
+                        label="Common Questions"
+                        title="Email Support FAQs"
+                    />
+
+                    <div className="grid items-start gap-4 md:grid-cols-2">
+
+                        {faqs.map((faq) => (
+                            <details
+                                key={faq.question}
+                                className="group rounded-xl border border-gray-200 bg-white p-5 shadow-sm"
+                            >
+
+                                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 font-semibold text-gray-900 [&::-webkit-details-marker]:hidden">
+
+                                    <span>{faq.question}</span>
+
+                                    <ChevronDown
+                                        size={19}
+                                        className="shrink-0 text-emerald-700 transition group-open:rotate-180"
+                                    />
+
+                                </summary>
+
+                                <p className="mt-4 border-t border-gray-100 pt-4 text-sm leading-7 text-gray-600">
+                                    {faq.answer}
+                                </p>
+
+                            </details>
+                        ))}
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            {/* ==================================
+                CONSULTATION CTA
+            ================================== */}
+
+            <section className="bg-gradient-to-r from-emerald-700 to-teal-700 py-14 text-white">
+
+                <div className="mx-auto max-w-4xl px-6 text-center">
+
+                    <h2 className="text-3xl font-extrabold sm:text-4xl">
+                        Ready to Simplify Your Email Support?
                     </h2>
 
-                    <p className="mx-auto mt-8 max-w-3xl text-xl leading-9 text-emerald-100">
-
-                        Let RiMax Technologies manage your customer email support
-                        with professionalism, speed, and consistency, ensuring every
-                        customer receives the attention they deserve while your team
-                        focuses on growing the business.
-
+                    <p className="mx-auto mt-4 max-w-2xl leading-8 text-emerald-50">
+                        Let RiMax help manage customer emails,
+                        organise requests, and maintain professional
+                        communication while you focus on growing
+                        your business.
                     </p>
 
                     <Link
                         href="/#contact"
-                        className="mt-12 inline-flex items-center gap-3 rounded-2xl bg-white px-10 py-5 text-lg font-bold text-emerald-700 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+                        className="mt-7 inline-flex items-center gap-2 rounded-xl bg-white px-8 py-4 font-bold text-emerald-700 shadow-lg transition hover:-translate-y-1"
                     >
-
-                        Contact RiMax Today
-
-                        <ArrowRight size={22} />
-
+                        Get Free Consultation
+                        <ArrowUpRight size={19} />
                     </Link>
 
                 </div>
@@ -468,7 +710,5 @@ export default function EmailSupportPage() {
             </section>
 
         </main>
-
     );
-
 }

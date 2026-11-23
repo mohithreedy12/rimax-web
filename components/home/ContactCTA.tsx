@@ -2,6 +2,238 @@
 
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import {
+    Mail,
+    MapPin,
+    Globe2,
+    Clock3,
+    ChevronDown,
+    Search,
+    ArrowUpRight,
+    MessageCircle,
+    Headphones,
+    CheckCircle2,
+} from "lucide-react";
+
+/* ==================================================
+   SERVICES
+================================================== */
+
+const services = [
+    "Live Chat Support",
+    "Email Support",
+    "Customer Support",
+    "Business Operations Support",
+    "Social Media Management",
+    "Digital Marketing Support",
+    "Other",
+];
+
+/* ==================================================
+   COUNTRIES
+================================================== */
+
+const countries = [
+    "Afghanistan",
+    "Albania",
+    "Algeria",
+    "Andorra",
+    "Angola",
+    "Antigua and Barbuda",
+    "Argentina",
+    "Armenia",
+    "Australia",
+    "Austria",
+    "Azerbaijan",
+    "Bahamas",
+    "Bahrain",
+    "Bangladesh",
+    "Barbados",
+    "Belarus",
+    "Belgium",
+    "Belize",
+    "Benin",
+    "Bhutan",
+    "Bolivia",
+    "Bosnia and Herzegovina",
+    "Botswana",
+    "Brazil",
+    "Brunei",
+    "Bulgaria",
+    "Burkina Faso",
+    "Burundi",
+    "Cabo Verde",
+    "Cambodia",
+    "Cameroon",
+    "Canada",
+    "Central African Republic",
+    "Chad",
+    "Chile",
+    "China",
+    "Colombia",
+    "Comoros",
+    "Congo",
+    "Costa Rica",
+    "Côte d'Ivoire",
+    "Croatia",
+    "Cuba",
+    "Cyprus",
+    "Czechia",
+    "Democratic Republic of the Congo",
+    "Denmark",
+    "Djibouti",
+    "Dominica",
+    "Dominican Republic",
+    "Ecuador",
+    "Egypt",
+    "El Salvador",
+    "Equatorial Guinea",
+    "Eritrea",
+    "Estonia",
+    "Eswatini",
+    "Ethiopia",
+    "Fiji",
+    "Finland",
+    "France",
+    "Gabon",
+    "Gambia",
+    "Georgia",
+    "Germany",
+    "Ghana",
+    "Greece",
+    "Grenada",
+    "Guatemala",
+    "Guinea",
+    "Guinea-Bissau",
+    "Guyana",
+    "Haiti",
+    "Honduras",
+    "Hungary",
+    "Iceland",
+    "India",
+    "Indonesia",
+    "Iran",
+    "Iraq",
+    "Ireland",
+    "Israel",
+    "Italy",
+    "Jamaica",
+    "Japan",
+    "Jordan",
+    "Kazakhstan",
+    "Kenya",
+    "Kiribati",
+    "Kuwait",
+    "Kyrgyzstan",
+    "Laos",
+    "Latvia",
+    "Lebanon",
+    "Lesotho",
+    "Liberia",
+    "Libya",
+    "Liechtenstein",
+    "Lithuania",
+    "Luxembourg",
+    "Madagascar",
+    "Malawi",
+    "Malaysia",
+    "Maldives",
+    "Mali",
+    "Malta",
+    "Marshall Islands",
+    "Mauritania",
+    "Mauritius",
+    "Mexico",
+    "Micronesia",
+    "Moldova",
+    "Monaco",
+    "Mongolia",
+    "Montenegro",
+    "Morocco",
+    "Mozambique",
+    "Myanmar",
+    "Namibia",
+    "Nauru",
+    "Nepal",
+    "Netherlands",
+    "New Zealand",
+    "Nicaragua",
+    "Niger",
+    "Nigeria",
+    "North Korea",
+    "North Macedonia",
+    "Norway",
+    "Oman",
+    "Pakistan",
+    "Palau",
+    "Palestine",
+    "Panama",
+    "Papua New Guinea",
+    "Paraguay",
+    "Peru",
+    "Philippines",
+    "Poland",
+    "Portugal",
+    "Qatar",
+    "Romania",
+    "Russia",
+    "Rwanda",
+    "Saint Kitts and Nevis",
+    "Saint Lucia",
+    "Saint Vincent and the Grenadines",
+    "Samoa",
+    "San Marino",
+    "Sao Tome and Principe",
+    "Saudi Arabia",
+    "Senegal",
+    "Serbia",
+    "Seychelles",
+    "Sierra Leone",
+    "Singapore",
+    "Slovakia",
+    "Slovenia",
+    "Solomon Islands",
+    "Somalia",
+    "South Africa",
+    "South Korea",
+    "South Sudan",
+    "Spain",
+    "Sri Lanka",
+    "Sudan",
+    "Suriname",
+    "Sweden",
+    "Switzerland",
+    "Syria",
+    "Tajikistan",
+    "Tanzania",
+    "Thailand",
+    "Timor-Leste",
+    "Togo",
+    "Tonga",
+    "Trinidad and Tobago",
+    "Tunisia",
+    "Turkey",
+    "Turkmenistan",
+    "Tuvalu",
+    "Uganda",
+    "Ukraine",
+    "United Arab Emirates",
+    "United Kingdom",
+    "United States",
+    "Uruguay",
+    "Uzbekistan",
+    "Vanuatu",
+    "Vatican City",
+    "Venezuela",
+    "Vietnam",
+    "Yemen",
+    "Zambia",
+    "Zimbabwe",
+];
+
+/* ==================================================
+   TYPES
+================================================== */
 
 type FormData = {
     name: string;
@@ -10,18 +242,11 @@ type FormData = {
     phone: string;
     country: string;
     service: string;
+    otherService: string;
     message: string;
 };
 
-type Errors = {
-    name?: string;
-    company?: string;
-    email?: string;
-    phone?: string;
-    country?: string;
-    service?: string;
-    message?: string;
-};
+type Errors = Partial<Record<keyof FormData, string>>;
 
 const initialForm: FormData = {
     name: "",
@@ -30,13 +255,21 @@ const initialForm: FormData = {
     phone: "",
     country: "",
     service: "",
+    otherService: "",
     message: "",
 };
+
+/* ==================================================
+   COMPONENT
+================================================== */
 
 export default function ContactCTA() {
     const [formData, setFormData] = useState<FormData>(initialForm);
     const [errors, setErrors] = useState<Errors>({});
     const [loading, setLoading] = useState(false);
+
+    const [countrySearch, setCountrySearch] = useState("");
+    const [countryOpen, setCountryOpen] = useState(false);
 
     const emailRegex =
         /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
@@ -44,45 +277,58 @@ export default function ContactCTA() {
     const phoneRegex =
         /^[+]?[0-9()\-\s]{7,20}$/;
 
+    /* ==================================================
+       VALIDATION
+    ================================================== */
+
     const validate = () => {
         const newErrors: Errors = {};
 
         if (formData.name.trim().length < 3) {
-            newErrors.name = "Enter your full name.";
+            newErrors.name = "Please enter your full name.";
         }
 
         if (formData.company.trim().length < 2) {
-            newErrors.company = "Company name is required.";
+            newErrors.company = "Please enter your company name.";
         }
 
-        if (!emailRegex.test(formData.email)) {
-            newErrors.email = "Enter a valid work email.";
+        if (!emailRegex.test(formData.email.trim())) {
+            newErrors.email = "Please enter a valid work email.";
         }
 
-        if (
-            formData.phone &&
-            !phoneRegex.test(formData.phone)
-        ) {
-            newErrors.phone = "Enter a valid phone number.";
+        if (!phoneRegex.test(formData.phone.trim())) {
+            newErrors.phone = "Please enter a valid contact number.";
         }
 
         if (!formData.country) {
-            newErrors.country = "Select a country.";
+            newErrors.country = "Please select your country.";
         }
 
         if (!formData.service) {
-            newErrors.service = "Select a service.";
+            newErrors.service = "Please select a service.";
+        }
+
+        if (
+            formData.service === "Other" &&
+            formData.otherService.trim().length < 3
+        ) {
+            newErrors.otherService =
+                "Please specify the service you need.";
         }
 
         if (formData.message.trim().length < 20) {
             newErrors.message =
-                "Please enter at least 20 characters.";
+                "Please describe your requirements in at least 20 characters.";
         }
 
         setErrors(newErrors);
 
         return Object.keys(newErrors).length === 0;
     };
+
+    /* ==================================================
+       HANDLE CHANGE
+    ================================================== */
 
     const handleChange = (
         e: React.ChangeEvent<
@@ -94,6 +340,9 @@ export default function ContactCTA() {
         setFormData((prev) => ({
             ...prev,
             [name]: value,
+            ...(name === "service" && value !== "Other"
+                ? { otherService: "" }
+                : {}),
         }));
 
         setErrors((prev) => ({
@@ -102,13 +351,17 @@ export default function ContactCTA() {
         }));
     };
 
+    /* ==================================================
+       SUBMIT
+    ================================================== */
+
     const handleSubmit = async (
         e: React.FormEvent<HTMLFormElement>
     ) => {
         e.preventDefault();
 
         if (!validate()) {
-            toast.error("Please fix the highlighted fields.");
+            toast.error("Please complete all required fields.");
             return;
         }
 
@@ -120,36 +373,56 @@ export default function ContactCTA() {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify({
+                    ...formData,
+                    otherService:
+                        formData.service === "Other"
+                            ? formData.otherService.trim()
+                            : "",
+                }),
             });
+
+            if (!response.ok) {
+                throw new Error("Submission failed");
+            }
 
             const result = await response.json();
 
             if (!result.success) {
-                throw new Error();
+                throw new Error("Submission failed");
             }
 
             toast.success(
-                "Message sent successfully! We'll contact you soon."
+                "Thank you! Your enquiry has been submitted successfully."
             );
 
             setFormData(initialForm);
+            setCountrySearch("");
+            setCountryOpen(false);
             setErrors({});
-        } catch (err) {
+        } catch {
             toast.error(
-                "Something went wrong. Please try again."
+                "Unable to send your message. Please try again."
             );
         } finally {
             setLoading(false);
         }
     };
 
+    /* ==================================================
+       INPUT STYLES
+    ================================================== */
+
     const inputClass = (field: keyof Errors) =>
-        `w-full rounded-xl border px-4 py-3 outline-none transition ${
+        `w-full rounded-xl border bg-white px-4 py-3.5 text-gray-900 outline-none transition placeholder:text-gray-400 ${
             errors[field]
-                ? "border-red-500"
+                ? "border-red-500 focus:border-red-500"
                 : "border-gray-300 focus:border-blue-600"
         }`;
+
+    const filteredCountries = countries.filter((country) =>
+        country.toLowerCase().includes(countrySearch.toLowerCase())
+    );
 
     return (
         <>
@@ -157,160 +430,378 @@ export default function ContactCTA() {
 
             <section
                 id="contact"
-                className="scroll-mt-20 bg-slate-50 pt-8 pb-24"
+                className="scroll-mt-20 bg-[#f8fafc] px-6 py-16 sm:py-20"
             >
-                <div className="mx-auto max-w-7xl px-6">
+                <div className="mx-auto max-w-7xl">
 
-                    <div className="mb-14 text-center">
+                    {/* HEADER */}
 
-                        <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
-                            CONTACT US
-                        </p>
+                    <div className="mb-12 text-center">
 
-                        <h2 className="mt-4 text-4xl font-bold text-gray-900 md:text-5xl">
-                            Let's Build Something Great Together
+            <span className="inline-block rounded-full bg-blue-100 px-5 py-2 text-xs font-bold uppercase tracking-[3px] text-blue-700">
+              Contact RiMax
+            </span>
+
+                        <h2 className="mt-5 text-3xl font-extrabold text-gray-900 sm:text-4xl lg:text-5xl">
+                            Let's Discuss Your Business Needs
                         </h2>
 
-                        <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-600">
-                            Whether you need customer support, technical assistance,
-                            or a dedicated support team, RiMax Technologies is ready
-                            to help your business grow.
+                        <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-600">
+                            Share your requirements with us and explore
+                            how RiMax Technologies can support your business.
                         </p>
 
                     </div>
 
-                    <div className="grid gap-10 lg:grid-cols-2">
+                    {/* MAIN GRID */}
 
-                        <div className="rounded-3xl bg-white p-8 shadow-xl">
+                    <div className="grid items-start gap-8 lg:grid-cols-[1.05fr_0.95fr]">
 
-                            <h3 className="mb-8 text-2xl font-bold text-gray-900">
-                                Send Us a Message
-                            </h3>
+                        {/* ==================================================
+                LEFT - CONTACT FORM
+            ================================================== */}
+
+                        <div className="rounded-[28px] border border-gray-200 bg-white p-6 shadow-sm sm:p-9">
+
+                            <div className="mb-8">
+                                <h3 className="text-2xl font-bold text-gray-900">
+                                    Send Us a Message
+                                </h3>
+
+                                <p className="mt-2 text-sm leading-6 text-gray-500">
+                                    Fill out the form below and tell us what you're looking for.
+                                </p>
+                            </div>
 
                             <form
                                 onSubmit={handleSubmit}
                                 className="space-y-5"
+                                noValidate
                             >
-                                <div>
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        placeholder="Full Name *"
-                                        value={formData.name}
-                                        onChange={handleChange}
-                                        className={inputClass("name")}
-                                    />
-                                    {errors.name && (
-                                        <p className="mt-1 text-sm text-red-600">{errors.name}</p>
-                                    )}
+
+                                {/* NAME + COMPANY */}
+
+                                <div className="grid gap-5 sm:grid-cols-2">
+
+                                    <div>
+                                        <label
+                                            htmlFor="name"
+                                            className="mb-2 block text-sm font-semibold text-gray-700"
+                                        >
+                                            Full Name *
+                                        </label>
+
+                                        <input
+                                            id="name"
+                                            type="text"
+                                            name="name"
+                                            autoComplete="name"
+                                            placeholder="Your full name"
+                                            value={formData.name}
+                                            onChange={handleChange}
+                                            className={inputClass("name")}
+                                        />
+
+                                        {errors.name && (
+                                            <p className="mt-1 text-sm text-red-600">
+                                                {errors.name}
+                                            </p>
+                                        )}
+                                    </div>
+
+                                    <div>
+                                        <label
+                                            htmlFor="company"
+                                            className="mb-2 block text-sm font-semibold text-gray-700"
+                                        >
+                                            Company Name *
+                                        </label>
+
+                                        <input
+                                            id="company"
+                                            type="text"
+                                            name="company"
+                                            autoComplete="organization"
+                                            placeholder="Your company"
+                                            value={formData.company}
+                                            onChange={handleChange}
+                                            className={inputClass("company")}
+                                        />
+
+                                        {errors.company && (
+                                            <p className="mt-1 text-sm text-red-600">
+                                                {errors.company}
+                                            </p>
+                                        )}
+                                    </div>
+
                                 </div>
 
-                                <div>
-                                    <input
-                                        type="text"
-                                        name="company"
-                                        placeholder="Company Name *"
-                                        value={formData.company}
-                                        onChange={handleChange}
-                                        className={inputClass("company")}
-                                    />
-                                    {errors.company && (
-                                        <p className="mt-1 text-sm text-red-600">{errors.company}</p>
-                                    )}
+                                {/* EMAIL + PHONE */}
+
+                                <div className="grid gap-5 sm:grid-cols-2">
+
+                                    <div>
+                                        <label
+                                            htmlFor="email"
+                                            className="mb-2 block text-sm font-semibold text-gray-700"
+                                        >
+                                            Work Email *
+                                        </label>
+
+                                        <input
+                                            id="email"
+                                            type="email"
+                                            name="email"
+                                            autoComplete="email"
+                                            placeholder="name@company.com"
+                                            value={formData.email}
+                                            onChange={handleChange}
+                                            className={inputClass("email")}
+                                        />
+
+                                        {errors.email && (
+                                            <p className="mt-1 text-sm text-red-600">
+                                                {errors.email}
+                                            </p>
+                                        )}
+                                    </div>
+
+                                    <div>
+                                        <label
+                                            htmlFor="phone"
+                                            className="mb-2 block text-sm font-semibold text-gray-700"
+                                        >
+                                            Contact Number *
+                                        </label>
+
+                                        <input
+                                            id="phone"
+                                            type="tel"
+                                            name="phone"
+                                            autoComplete="tel"
+                                            placeholder="+1 555 123 4567"
+                                            value={formData.phone}
+                                            onChange={handleChange}
+                                            className={inputClass("phone")}
+                                        />
+
+                                        {errors.phone && (
+                                            <p className="mt-1 text-sm text-red-600">
+                                                {errors.phone}
+                                            </p>
+                                        )}
+                                    </div>
+
                                 </div>
 
-                                <div>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        placeholder="Work Email *"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        className={inputClass("email")}
-                                    />
-                                    {errors.email && (
-                                        <p className="mt-1 text-sm text-red-600">{errors.email}</p>
-                                    )}
+                                {/* COUNTRY + SERVICE */}
+
+                                <div className="grid gap-5 sm:grid-cols-2">
+
+                                    {/* COUNTRY */}
+
+                                    <div className="relative">
+
+                                        <label className="mb-2 block text-sm font-semibold text-gray-700">
+                                            Country *
+                                        </label>
+
+                                        <button
+                                            type="button"
+                                            onClick={() => {
+                                                setCountryOpen(!countryOpen);
+                                                setCountrySearch("");
+                                            }}
+                                            className={`${inputClass("country")} flex items-center justify-between text-left`}
+                                            aria-expanded={countryOpen}
+                                            aria-haspopup="listbox"
+                                        >
+                      <span
+                          className={
+                              formData.country
+                                  ? "text-gray-900"
+                                  : "text-gray-400"
+                          }
+                      >
+                        {formData.country || "Select country"}
+                      </span>
+
+                                            <ChevronDown
+                                                size={18}
+                                                className="shrink-0 text-gray-500"
+                                            />
+                                        </button>
+
+                                        {countryOpen && (
+                                            <div className="absolute left-0 right-0 z-30 mt-2 rounded-xl border border-gray-200 bg-white p-3 shadow-xl">
+
+                                                <div className="relative">
+
+                                                    <Search
+                                                        size={17}
+                                                        className="absolute left-3 top-3 text-gray-400"
+                                                    />
+
+                                                    <input
+                                                        type="text"
+                                                        value={countrySearch}
+                                                        onChange={(e) =>
+                                                            setCountrySearch(e.target.value)
+                                                        }
+                                                        placeholder="Search country..."
+                                                        className="w-full rounded-lg border border-gray-200 py-2.5 pl-10 pr-3 text-sm text-gray-900 outline-none focus:border-blue-600"
+                                                    />
+
+                                                </div>
+
+                                                <div
+                                                    role="listbox"
+                                                    aria-label="Countries"
+                                                    className="mt-2 max-h-52 overflow-y-auto"
+                                                >
+                                                    {filteredCountries.length ? (
+                                                        filteredCountries.map((country) => (
+                                                            <button
+                                                                key={country}
+                                                                type="button"
+                                                                role="option"
+                                                                aria-selected={
+                                                                    formData.country === country
+                                                                }
+                                                                onClick={() => {
+                                                                    setFormData((prev) => ({
+                                                                        ...prev,
+                                                                        country,
+                                                                    }));
+
+                                                                    setErrors((prev) => ({
+                                                                        ...prev,
+                                                                        country: "",
+                                                                    }));
+
+                                                                    setCountryOpen(false);
+                                                                    setCountrySearch("");
+                                                                }}
+                                                                className="w-full rounded-lg px-3 py-2 text-left text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700"
+                                                            >
+                                                                {country}
+                                                            </button>
+                                                        ))
+                                                    ) : (
+                                                        <p className="px-3 py-3 text-sm text-gray-500">
+                                                            No country found.
+                                                        </p>
+                                                    )}
+                                                </div>
+
+                                            </div>
+                                        )}
+
+                                        {errors.country && (
+                                            <p className="mt-1 text-sm text-red-600">
+                                                {errors.country}
+                                            </p>
+                                        )}
+                                    </div>
+
+                                    {/* SERVICE */}
+
+                                    <div>
+                                        <label
+                                            htmlFor="service"
+                                            className="mb-2 block text-sm font-semibold text-gray-700"
+                                        >
+                                            Service Required *
+                                        </label>
+
+                                        <select
+                                            id="service"
+                                            name="service"
+                                            value={formData.service}
+                                            onChange={handleChange}
+                                            className={inputClass("service")}
+                                        >
+                                            <option value="">
+                                                Select service
+                                            </option>
+
+                                            {services.map((service) => (
+                                                <option
+                                                    key={service}
+                                                    value={service}
+                                                >
+                                                    {service}
+                                                </option>
+                                            ))}
+                                        </select>
+
+                                        {errors.service && (
+                                            <p className="mt-1 text-sm text-red-600">
+                                                {errors.service}
+                                            </p>
+                                        )}
+                                    </div>
+
                                 </div>
 
-                                <div>
-                                    <input
-                                        type="text"
-                                        name="phone"
-                                        placeholder="Phone Number (Optional)"
-                                        value={formData.phone}
-                                        onChange={handleChange}
-                                        className={inputClass("phone")}
-                                    />
-                                    {errors.phone && (
-                                        <p className="mt-1 text-sm text-red-600">{errors.phone}</p>
-                                    )}
-                                </div>
+                                {/* OTHER SERVICE */}
+
+                                {formData.service === "Other" && (
+                                    <div>
+                                        <label
+                                            htmlFor="otherService"
+                                            className="mb-2 block text-sm font-semibold text-gray-700"
+                                        >
+                                            What Service Do You Need? *
+                                        </label>
+
+                                        <input
+                                            id="otherService"
+                                            type="text"
+                                            name="otherService"
+                                            placeholder="Enter the service you're looking for"
+                                            value={formData.otherService}
+                                            onChange={handleChange}
+                                            className={inputClass("otherService")}
+                                        />
+
+                                        {errors.otherService && (
+                                            <p className="mt-1 text-sm text-red-600">
+                                                {errors.otherService}
+                                            </p>
+                                        )}
+                                    </div>
+                                )}
+
+                                {/* MESSAGE */}
 
                                 <div>
-                                    <select
-                                        name="country"
-                                        value={formData.country}
-                                        onChange={handleChange}
-                                        className={inputClass("country")}
+                                    <label
+                                        htmlFor="message"
+                                        className="mb-2 block text-sm font-semibold text-gray-700"
                                     >
-                                        <option value="">Select Country</option>
-                                        <option>United States</option>
-                                        <option>Canada</option>
-                                        <option>United Kingdom</option>
-                                        <option>India</option>
-                                        <option>Australia</option>
-                                        <option>Netherlands</option>
-                                        <option>Germany</option>
-                                        <option>Singapore</option>
-                                        <option>United Arab Emirates</option>
-                                        <option>Other</option>
-                                    </select>
+                                        Tell Us About Your Project *
+                                    </label>
 
-                                    {errors.country && (
-                                        <p className="mt-1 text-sm text-red-600">{errors.country}</p>
-                                    )}
-                                </div>
-
-                                <div>
-                                    <select
-                                        name="service"
-                                        value={formData.service}
+                                    <textarea
+                                        id="message"
+                                        rows={5}
+                                        name="message"
+                                        placeholder="Describe the support you need, your expected workload, preferred support hours, and any specific business requirements..."
+                                        value={formData.message}
                                         onChange={handleChange}
-                                        className={inputClass("service")}
-                                    >
-                                        <option value="">Select Service</option>
-                                        <option>Customer Support</option>
-                                        <option>Live Chat Support</option>
-                                        <option>Email Support</option>
-                                        <option>Technical Support</option>
-                                        <option>Dedicated Support Team</option>
-                                        <option>AI Customer Support</option>
-                                        <option>Business Process Outsourcing (BPO)</option>
-                                        <option>Software Development</option>
-                                        <option>Cloud & DevOps</option>
-                                        <option>Other</option>
-                                    </select>
-
-                                    {errors.service && (
-                                        <p className="mt-1 text-sm text-red-600">{errors.service}</p>
-                                    )}
-                                </div>
-
-                                <div>
-                  <textarea
-                      rows={5}
-                      name="message"
-                      placeholder="Tell us about your project..."
-                      value={formData.message}
-                      onChange={handleChange}
-                      className={inputClass("message")}
-                  />
+                                        className={`${inputClass("message")} resize-y`}
+                                    />
 
                                     {errors.message && (
-                                        <p className="mt-1 text-sm text-red-600">{errors.message}</p>
+                                        <p className="mt-1 text-sm text-red-600">
+                                            {errors.message}
+                                        </p>
                                     )}
                                 </div>
+
+                                {/* SUBMIT */}
 
                                 <button
                                     type="submit"
@@ -320,65 +811,188 @@ export default function ContactCTA() {
                                     {loading ? "Sending..." : "Send Message"}
                                 </button>
 
-                            </form>
+                                <p className="text-center text-xs leading-5 text-gray-500">
+                                    We'll review your enquiry and get back to you
+                                    as soon as possible.
+                                </p>
 
+                            </form>
                         </div>
 
-                        <div className="rounded-3xl bg-blue-700 p-10 text-white shadow-xl">
+                        {/* ==================================================
+                RIGHT - REDESIGNED CONTACT PANEL
+            ================================================== */}
 
-                            <h3 className="text-3xl font-bold">
-                                Contact Information
-                            </h3>
+                        <div className="space-y-6">
 
-                            <p className="mt-5 leading-8 text-blue-100">
-                                We'd love to hear about your project and discuss how
-                                RiMax Technologies can support your business.
-                            </p>
+                            {/* MAIN CONTACT CARD */}
 
-                            <div className="mt-10 space-y-6">
+                            <div className="rounded-[28px] border border-gray-200 bg-white p-7 shadow-sm sm:p-9">
 
-                                <div>
-                                    <h4 className="font-semibold">📧 Email</h4>
-                                    <p className="text-blue-100">
-                                        contact@rimaxtech.com
+                                <div className="mb-8">
+
+                  <span className="text-xs font-bold uppercase tracking-[3px] text-blue-700">
+                    Get In Touch
+                  </span>
+
+                                    <h3 className="mt-3 text-3xl font-extrabold text-gray-900">
+                                        Contact Information
+                                    </h3>
+
+                                    <p className="mt-4 leading-7 text-gray-600">
+                                        Have a question or a business requirement?
+                                        Connect with RiMax Technologies and
+                                        let's explore how we can work together.
                                     </p>
+
                                 </div>
 
-                                <div>
-                                    <h4 className="font-semibold">📍 Headquarters</h4>
-                                    <p className="text-blue-100">
-                                        Hyderabad, India
-                                    </p>
+                                {/* EMAIL */}
+
+                                <div className="flex items-start gap-4 rounded-2xl bg-blue-50 p-5">
+
+                                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-blue-700 shadow-sm">
+                                        <Mail size={23} />
+                                    </div>
+
+                                    <div>
+                                        <h4 className="font-bold text-gray-900">
+                                            Email Us
+                                        </h4>
+
+                                        <a
+                                            href="mailto:contact@rimaxtech.com"
+                                            className="mt-1 block break-all text-blue-700 hover:underline"
+                                        >
+                                            contact@rimaxtech.com
+                                        </a>
+
+                                        <p className="mt-1 text-sm text-gray-500">
+                                            For business enquiries and consultations
+                                        </p>
+                                    </div>
+
                                 </div>
 
-                                <div>
-                                    <h4 className="font-semibold">🌍 Serving</h4>
-                                    <p className="text-blue-100">
-                                        USA • UK • Netherlands • Australia • Middle East
-                                    </p>
+                                {/* HEADQUARTERS */}
+
+                                <div className="mt-4 flex items-start gap-4 rounded-2xl bg-slate-50 p-5">
+
+                                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-blue-700 shadow-sm">
+                                        <MapPin size={23} />
+                                    </div>
+
+                                    <div>
+                                        <h4 className="font-bold text-gray-900">
+                                            Headquarters
+                                        </h4>
+
+                                        <p className="mt-1 text-gray-700">
+                                            Hyderabad, India
+                                        </p>
+
+                                        <p className="mt-1 text-sm text-gray-500">
+                                            Remote-first business support
+                                        </p>
+                                    </div>
+
                                 </div>
 
-                                <div>
-                                    <h4 className="font-semibold">🕒 Business Hours</h4>
-                                    <p className="text-blue-100">
-                                        Monday - Friday
-                                    </p>
+                                {/* REGIONS */}
+
+                                <div className="mt-4 flex items-start gap-4 rounded-2xl bg-slate-50 p-5">
+
+                                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-blue-700 shadow-sm">
+                                        <Globe2 size={23} />
+                                    </div>
+
+                                    <div>
+                                        <h4 className="font-bold text-gray-900">
+                                            Regions We Serve
+                                        </h4>
+
+                                        <p className="mt-1 leading-7 text-gray-700">
+                                            USA • UK • Netherlands • Australia • Middle East
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                                {/* BUSINESS HOURS */}
+
+                                <div className="mt-4 flex items-start gap-4 rounded-2xl bg-slate-50 p-5">
+
+                                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-blue-700 shadow-sm">
+                                        <Clock3 size={23} />
+                                    </div>
+
+                                    <div>
+                                        <h4 className="font-bold text-gray-900">
+                                            Business Hours
+                                        </h4>
+
+                                        <p className="mt-1 text-gray-700">
+                                            Monday – Friday
+                                        </p>
+
+                                        <p className="mt-1 text-sm text-gray-500">
+                                            Flexible support schedules available
+                                        </p>
+                                    </div>
+
                                 </div>
 
                             </div>
 
-                            <div className="mt-12 rounded-2xl bg-white/10 p-6">
+                            {/* SECONDARY CTA CARD */}
 
-                                <h4 className="mb-4 text-xl font-bold">
-                                    Why Choose RiMax?
-                                </h4>
+                            <div className="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-700 p-7 text-white shadow-lg sm:p-9">
 
-                                <ul className="space-y-3 text-blue-100">
-                                    <li>✔ Fast Response Time</li>
-                                    <li>✔ Dedicated Support Team</li>
-                                    <li>✔ Scalable Solutions</li>
-                                    <li>✔ Customer-First Approach</li>
-                                </ul>
+                                {/* Decorative circles */}
+
+                                <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full border border-white/20"></div>
+
+                                <div className="absolute -bottom-20 right-12 h-40 w-40 rounded-full bg-white/5"></div>
+
+                                <div className="relative">
+
+                                    <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/15">
+                                        <MessageCircle size={28} />
+                                    </div>
+
+                                    <h3 className="text-2xl font-bold">
+                                        Let's Talk About Your Business
+                                    </h3>
+
+                                    <p className="mt-4 leading-8 text-blue-100">
+                                        Every business has different support needs.
+                                        Share your requirements and we'll discuss
+                                        an arrangement tailored to your operations.
+                                    </p>
+
+                                    <div className="mt-6 flex flex-wrap gap-3">
+
+                    <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-sm">
+                      <CheckCircle2 size={16} />
+                      Flexible Support
+                    </span>
+
+                                        <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-sm">
+                      <CheckCircle2 size={16} />
+                      Custom Solutions
+                    </span>
+
+                                    </div>
+
+                                    <a
+                                        href="mailto:contact@rimaxtech.com"
+                                        className="mt-7 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 font-bold text-blue-700 transition hover:bg-blue-50"
+                                    >
+                                        Email Our Team
+                                        <ArrowUpRight size={19} />
+                                    </a>
+
+                                </div>
 
                             </div>
 
@@ -387,7 +1001,6 @@ export default function ContactCTA() {
                     </div>
 
                 </div>
-
             </section>
         </>
     );

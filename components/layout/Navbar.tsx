@@ -9,9 +9,12 @@ const menuItems = [
     { label: "Home", href: "/" },
     { label: "About", href: "/#about" },
     { label: "Services", href: "/#services" },
-    { label: "Industries", href: "/#industries" },
+
+    // Temporarily hidden until RiMax expands
+    // { label: "Industries", href: "/#industries" },
+
     { label: "Why RiMax", href: "/#why-rimax" },
-    { label: "Process", href: "/#process" },
+    { label: "Our Process", href: "/#process" },
     { label: "Contact", href: "/#contact" },
 ];
 
@@ -28,28 +31,30 @@ export default function Navbar() {
 
                     {/* Logo */}
 
-                    <Link href="/" className="flex items-center" onClick={closeMenu}>
-
+                    <Link
+                        href="/"
+                        className="flex items-center"
+                        onClick={closeMenu}
+                    >
                         <Image
                             src="/logos/rimax-logo-v2.png"
                             alt="RiMax Technologies"
                             width={90}
                             height={32}
                             priority
-                            className="w-[70px] sm:w-[80px] lg:w-[90px] h-auto"
+                            className="h-auto w-[70px] sm:w-[80px] lg:w-[90px]"
                         />
-
                     </Link>
 
                     {/* Desktop Navigation */}
 
-                    <nav className="hidden items-center gap-10 lg:flex">
+                    <nav className="hidden items-center gap-8 lg:flex">
 
                         {menuItems.map((item) => (
                             <Link
                                 key={item.label}
                                 href={item.href}
-                                className="font-medium text-gray-700 transition-colors hover:text-blue-700"
+                                className="whitespace-nowrap font-medium text-gray-700 transition-colors hover:text-blue-700"
                             >
                                 {item.label}
                             </Link>
@@ -61,7 +66,7 @@ export default function Navbar() {
 
                     <Link
                         href="/#contact"
-                        className="hidden rounded-xl bg-blue-700 px-6 py-3 font-semibold text-white transition hover:bg-blue-800 lg:block"
+                        className="hidden whitespace-nowrap rounded-xl bg-blue-700 px-6 py-3 font-semibold text-white transition hover:bg-blue-800 lg:block"
                     >
                         Get Free Consultation
                     </Link>
@@ -70,7 +75,8 @@ export default function Navbar() {
 
                     <button
                         type="button"
-                        aria-label="Toggle Menu"
+                        aria-label={isOpen ? "Close Menu" : "Open Menu"}
+                        aria-expanded={isOpen}
                         onClick={() => setIsOpen(!isOpen)}
                         className="mr-1 rounded-lg p-2 text-gray-700 lg:hidden"
                     >
@@ -92,7 +98,7 @@ export default function Navbar() {
 
                     <div className="fixed left-0 right-0 top-14 z-50 border-t bg-white shadow-xl lg:hidden">
 
-                        <div className="flex flex-col p-5">
+                        <div className="flex max-h-[calc(100vh-3.5rem)] flex-col overflow-y-auto p-5">
 
                             {menuItems.map((item) => (
                                 <Link

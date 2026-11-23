@@ -1,0 +1,391 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum EmployeeStatus {
+  ACTIVE
+  INACTIVE
+  ON_LEAVE
+  RESIGNED
+  TERMINATED
+}
+
+enum EmploymentType {
+  FULL_TIME
+  PART_TIME
+  CONTRACT
+  INTERN
+}
+
+enum AttendanceStatus {
+  PRESENT
+  ABSENT
+  LATE
+  HALF_DAY
+  LEAVE
+  HOLIDAY
+  WEEKEND
+  WORK_FROM_HOME
+}
+
+enum LeaveStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum LeaveType {
+  CASUAL
+  SICK
+  EARNED
+  LOSS_OF_PAY
+  WORK_FROM_HOME
+}
+
+enum ProjectStatus {
+  PLANNING
+  ACTIVE
+  ON_HOLD
+  COMPLETED
+  CANCELLED
+}
+
+model Department {
+  id          String  @id @default(uuid())
+  name        String  @unique
+  code        String  @unique
+  description String?
+  isActive    Boolean @default(true)
+
+  roles     Role[]
+  employees Employee[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Role {
+  id String @id @default(uuid())
+
+  departmentId String
+  department   Department @relation(fields: [departmentId], references: [id])
+
+  name        String  @unique
+  level       Int
+  description String?
+  isActive    Boolean @default(true)
+
+  employees Employee[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([departmentId])
+}
+
+model Employee {
+  id String @id @default(uuid())
+
+  employeeCode String @unique
+
+  firstName String
+  lastName  String
+
+  email String  @unique
+  phone String?
+
+  gender String?
+
+  dateOfBirth DateTime?
+
+  joiningDate DateTime
+
+  employmentType EmploymentType @default(FULL_TIME)
+
+  status EmployeeStatus @default(ACTIVE)
+
+  profileImage String?
+
+  address String?
+
+  emergencyContact String?
+
+  departmentId String
+  department   Department @relation(fields: [departmentId], references: [id])
+
+  roleId String
+  role   Role   @relation(fields: [roleId], references: [id])
+
+  managerId String?
+  manager   Employee? @relation("EmployeeManager", fields: [managerId], references: [id])
+
+  subordinates Employee[] @relation("EmployeeManager")
+
+  user User?
+
+  attendances Attendance[]
+
+  leaveRequests LeaveRequest[]
+
+  approvedLeaves LeaveRequest[] @relation("LeaveApprover")
+
+  managedProjects Project[] @relation("ProjectManager")
+
+  projectMembers ProjectMember[]
+
+  documents Document[]
+
+  notifications Notification[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([departmentId])
+  @@index([roleId])
+  @@index([managerId])
+  @@index([employeeCode])
+  @@index([email])
+}
+
+model User {
+  id String @id @default(uuid())
+
+  employeeId String @unique
+
+  employee Employee @relation(fields: [employeeId], references: [id])
+
+  username String @unique
+
+  email String @unique
+
+  passwordHash String
+
+  isFirstLogin Boolean @default(true)
+
+  isActive Boolean @default(true)
+
+  isLocked Boolean @default(false)
+
+  failedAttempts Int @default(0)
+
+  lastLogin DateTime?
+
+  auditLogs AuditLog[]
+
+  createdAt DateTime @default(now())
+
+  updatedAt DateTime @updatedAt
+}
+
+model Attendance {
+  id String @id @default(uuid())
+
+  employeeId String
+  employee   Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  attendanceDate DateTime
+
+  checkIn  DateTime?
+  checkOut DateTime?
+
+  totalHours Float?
+
+  status AttendanceStatus @default(PRESENT)
+
+  remarks String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([employeeId, attendanceDate])
+  @@index([attendanceDate])
+  @@index([employeeId])
+}
+
+model LeaveRequest {
+  id String @id @default(uuid())
+
+  employeeId String
+  employee   Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  leaveType LeaveType
+
+  startDate DateTime
+  endDate   DateTime
+
+  totalDays Float
+
+  reason String?
+
+  status LeaveStatus @default(PENDING)
+
+  approvedById String?
+  approvedBy   Employee? @relation("LeaveApprover", fields: [approvedById], references: [id])
+
+  approvedAt DateTime?
+
+  rejectionReason String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([employeeId])
+  @@index([approvedById])
+  @@index([status])
+}
+
+model Project {
+  id String @id @default(uuid())
+
+  projectCode String @unique
+
+  projectName String
+
+  clientName String
+
+  description String?
+
+  startDate DateTime?
+
+  endDate DateTime?
+
+  status ProjectStatus @default(PLANNING)
+
+  managerId String
+
+  manager Employee @relation("ProjectManager", fields: [managerId], references: [id])
+
+  members ProjectMember[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([managerId])
+  @@index([status])
+}
+
+model ProjectMember {
+  id String @id @default(uuid())
+
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  employeeId String
+  employee   Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  roleInProject String?
+
+  assignedDate DateTime @default(now())
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([projectId, employeeId])
+  @@index([projectId])
+  @@index([employeeId])
+}
+
+model Document {
+  id String @id @default(uuid())
+
+  employeeId String
+  employee   Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  documentType String
+
+  fileName String
+
+  fileUrl String
+
+  uploadedById String?
+
+  uploadedAt DateTime @default(now())
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([employeeId])
+}
+
+model Notification {
+  id String @id @default(uuid())
+
+  employeeId String
+  employee   Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  title String
+
+  message String
+
+  isRead Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([employeeId])
+  @@index([isRead])
+}
+
+model AuditLog {
+  id String @id @default(uuid())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  action String
+
+  module String
+
+  recordId String?
+
+  oldValue String?
+
+  newValue String?
+
+  ipAddress String?
+
+  userAgent String?
+
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([module])
+  @@index([createdAt])
+}
+
+model CompanySetting {
+  id String @id @default(uuid())
+
+  companyName String @unique
+
+  companyEmail String?
+
+  companyPhone String?
+
+  companyWebsite String?
+
+  logoUrl String?
+
+  address String?
+
+  city String?
+
+  state String?
+
+  country String?
+
+  postalCode String?
+
+  timezone String?
+
+  officeStart String?
+
+  officeEnd String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

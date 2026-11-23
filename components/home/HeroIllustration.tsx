@@ -1,9 +1,8 @@
 import {
-    MessageSquare,
-    Mail,
-    Headphones,
-    Star,
-    Activity,
+    Headset,
+    Layers,
+    Users,
+    TrendingUp,
 } from "lucide-react";
 
 export default function HeroIllustration() {
@@ -11,106 +10,86 @@ export default function HeroIllustration() {
         <div className="relative">
 
             {/* Background Glow */}
-            <div className="absolute inset-0 rounded-[40px] bg-gradient-to-br from-blue-100 via-white to-orange-100 blur-3xl opacity-70"></div>
+            <div className="absolute inset-0 rounded-[40px] bg-gradient-to-br from-blue-100 via-white to-orange-100 opacity-70 blur-3xl"></div>
 
-            {/* Dashboard */}
-            <div className="relative rounded-[32px] border border-gray-200 bg-white p-8 shadow-2xl">
+            {/* Business Solutions Panel */}
+            <div className="relative rounded-[28px] border border-gray-200 bg-white p-7 shadow-xl">
 
-                <div className="mb-8 flex items-center justify-between">
+                {/* Panel Heading */}
+                <div className="mb-8">
 
-                    <div>
-                        <h2 className="text-3xl font-bold">
-                            Support Dashboard
-                        </h2>
+                    <h2 className="text-3xl font-bold text-gray-900">
+                        Built to Support Your Growth
+                    </h2>
 
-                        <p className="text-gray-500">
-                            Live Operations
-                        </p>
-                    </div>
-
-                    <div className="flex items-center gap-2 rounded-full bg-green-100 px-4 py-2">
-
-                        <Activity
-                            size={16}
-                            className="text-green-600"
-                        />
-
-                        <span className="text-sm font-semibold text-green-700">
-              Live
-            </span>
-
-                    </div>
+                    <p className="mt-2 text-gray-500">
+                        Reliable solutions for growing businesses
+                    </p>
 
                 </div>
 
+                {/* Business Benefits */}
                 <div className="space-y-4">
 
-                    <DashboardItem
-                        icon={<MessageSquare className="text-blue-600" />}
-                        title="Live Chats"
-                        value="248"
-                        bg="bg-blue-50"
-                        color="text-blue-700"
-                    />
+                    {/* Dedicated Business Support */}
+                    <div className="flex items-center gap-4 rounded-2xl bg-blue-50 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
 
-                    <DashboardItem
-                        icon={<Mail className="text-green-600" />}
-                        title="Emails"
-                        value="112"
-                        bg="bg-green-50"
-                        color="text-green-700"
-                    />
+                        <Headset
+                            size={26}
+                            className="shrink-0 text-blue-600"
+                        />
 
-                    <DashboardItem
-                        icon={<Headphones className="text-orange-600" />}
-                        title="Support Agents"
-                        value="32"
-                        bg="bg-orange-50"
-                        color="text-orange-700"
-                    />
+                        <span className="text-lg font-medium text-gray-800">
+                            Dedicated Business Support
+                        </span>
 
-                    <DashboardItem
-                        icon={<Star className="text-yellow-500" />}
-                        title="Satisfaction"
-                        value="98%"
-                        bg="bg-purple-50"
-                        color="text-purple-700"
-                    />
+                    </div>
+
+                    {/* Flexible Service Packages */}
+                    <div className="flex items-center gap-4 rounded-2xl bg-green-50 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+
+                        <Layers
+                            size={26}
+                            className="shrink-0 text-green-600"
+                        />
+
+                        <span className="text-lg font-medium text-gray-800">
+                            Flexible Service Packages
+                        </span>
+
+                    </div>
+
+                    {/* Trained Professionals */}
+                    <div className="flex items-center gap-4 rounded-2xl bg-orange-50 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+
+                        <Users
+                            size={26}
+                            className="shrink-0 text-orange-600"
+                        />
+
+                        <span className="text-lg font-medium text-gray-800">
+                            Trained Professionals
+                        </span>
+
+                    </div>
+
+                    {/* Scalable Operations */}
+                    <div className="flex items-center gap-4 rounded-2xl bg-purple-50 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+
+                        <TrendingUp
+                            size={26}
+                            className="shrink-0 text-purple-600"
+                        />
+
+                        <span className="text-lg font-medium text-gray-800">
+                            Scalable Operations
+                        </span>
+
+                    </div>
 
                 </div>
 
             </div>
-
-        </div>
-    );
-}
-
-type DashboardItemProps = {
-    icon: React.ReactNode;
-    title: string;
-    value: string;
-    bg: string;
-    color: string;
-};
-
-function DashboardItem({
-                           icon,
-                           title,
-                           value,
-                           bg,
-                           color,
-                       }: DashboardItemProps) {
-    return (
-        <div className={`flex items-center justify-between rounded-2xl ${bg} p-4`}>
-
-            <div className="flex items-center gap-3">
-                {icon}
-                <span>{title}</span>
-            </div>
-
-            <span className={`font-bold ${color}`}>
-        {value}
-      </span>
 
         </div>
     );

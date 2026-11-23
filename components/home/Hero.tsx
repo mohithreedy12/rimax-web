@@ -15,8 +15,7 @@ export default function Hero() {
                 <div className="absolute bottom-0 left-1/2 h-[400px] w-[400px] -translate-x-1/2 rounded-full bg-cyan-100 opacity-40 blur-3xl"></div>
             </div>
 
-            <div className="mx-auto flex min-h-[90vh] max-w-7xl flex-col items-center justify-between gap-16 px-6 pt-10 pb-16 lg:flex-row">
-
+            <div className="mx-auto flex min-h-[75vh] max-w-7xl flex-col items-center justify-between gap-12 px-6 py-16 lg:flex-row">
                 {/* Left Side */}
                 <div className="max-w-xl">
 
@@ -24,21 +23,20 @@ export default function Hero() {
                         Welcome to RiMax Technologies
                     </p>
 
-                    <h1 className="mb-8 text-5xl font-extrabold leading-tight text-gray-900 md:text-6xl">
-                        Customer Support
+                    <h1 className="mb-8 text-4xl font-extrabold leading-[1.15] tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">                        Your Operations.
                         <br />
-                        & Technology
+                        Our Expertise.
                         <br />
                         <span className="text-blue-700">
-                            Solutions
+                        Your Growth.
                         </span>
                     </h1>
 
                     <p className="mb-10 text-lg leading-9 text-gray-600">
-                        Helping businesses deliver exceptional customer
-                        experiences through reliable customer support,
-                        live chat, email support, technical assistance,
-                        and scalable technology solutions.
+                        Reliable customer support, business operations and
+                        digital marketing solutions that help your business
+                        deliver better customer experiences and grow with
+                        confidence.
                     </p>
 
                     <div className="flex flex-wrap gap-5">

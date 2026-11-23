@@ -1,7 +1,7 @@
 import Hero from "@/components/home/Hero";
 import About from "@/components/home/About";
 import Services from "@/components/home/Services";
-import Industries from "@/components/home/Industries";
+// import Industries from "@/components/home/Industries";
 import WhyRiMax from "@/components/home/WhyRiMax";
 import HowWeWork from "@/components/home/HowWeWork";
 import ContactCTA from "@/components/home/ContactCTA";
@@ -19,13 +19,13 @@ export default function Home() {
             {/* Services */}
             <Services />
 
-            {/* Industries */}
-            <Industries />
+            {/* Industries - Temporarily Hidden */}
+            {/* <Industries /> */}
 
             {/* Why RiMax */}
             <WhyRiMax />
 
-            {/* Process */}
+            {/* Our Process */}
             <HowWeWork />
 
             {/* Contact */}

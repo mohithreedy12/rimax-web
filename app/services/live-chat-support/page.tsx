@@ -1,233 +1,437 @@
 import Link from "next/link";
+
 import {
     MessageSquare,
-    Clock3,
-    ShieldCheck,
-    Globe2,
+    Mail,
+    ShoppingCart,
+    HelpCircle,
     Users,
-    TrendingUp,
-    ArrowRight,
+    Clock3,
     CheckCircle2,
-    Headset,
-    Zap,
+    ArrowUpRight,
+    ChevronDown,
+    Headphones,
+    ClipboardList,
+    Settings,
+    PlayCircle,
+    BarChart3,
+    ShieldCheck,
+    FileText,
+    BookOpen,
+    KeyRound,
+    CalendarDays,
+    UserRound,
+    Layers,
+    ArrowRight,
 } from "lucide-react";
 
-const features = [
-    {
-        icon: Clock3,
-        title: "24/7 Live Chat Coverage",
-        description:
-            "Provide round-the-clock assistance so your customers always receive timely responses.",
-    },
+/* ==================================
+   WHAT THE SERVICE INCLUDES
+================================== */
+
+const inclusions = [
     {
         icon: MessageSquare,
-        title: "Instant Customer Responses",
+        title: "Customer Enquiries",
         description:
-            "Engage customers immediately through real-time conversations and reduce waiting time.",
+            "Respond to customer questions about products, services, pricing, availability, and general business information.",
+    },
+    {
+        icon: ShoppingCart,
+        title: "Order Assistance",
+        description:
+            "Help customers with order status, shipping updates, delivery enquiries, and return or refund procedures.",
+    },
+    {
+        icon: Headphones,
+        title: "Issue Resolution",
+        description:
+            "Handle common customer concerns using your approved guidelines and escalate complex issues to the appropriate team.",
     },
     {
         icon: Users,
-        title: "Dedicated Support Agents",
+        title: "Pre-Sales Assistance",
         description:
-            "Our trained professionals work as an extension of your business and represent your brand.",
+            "Guide potential customers through product information, purchasing questions, and relevant service options.",
     },
     {
-        icon: Globe2,
-        title: "Global Customer Support",
+        icon: ClipboardList,
+        title: "Conversation Management",
         description:
-            "Serve customers across multiple countries and time zones with consistent quality.",
+            "Organise customer conversations, maintain relevant records, and document issues requiring follow-up.",
     },
     {
-        icon: TrendingUp,
-        title: "Lead Qualification",
+        icon: BarChart3,
+        title: "Support Reporting",
         description:
-            "Identify potential customers, answer pre-sales questions, and improve conversions.",
-    },
-    {
-        icon: ShieldCheck,
-        title: "Secure & Professional",
-        description:
-            "Every customer interaction is handled with professionalism and confidentiality.",
+            "Provide agreed reporting on chat volumes, common enquiries, response performance, and recurring customer issues.",
     },
 ];
 
-const benefits = [
-    "Improve customer satisfaction",
-    "Reduce response time",
-    "Increase customer retention",
-    "Professional brand representation",
-    "Scalable support teams",
-    "Cost-effective customer service",
-    "Reliable communication",
-    "Business growth support",
+/* ==================================
+   WHO NEEDS THIS SERVICE
+================================== */
+
+const audiences = [
+    {
+        icon: ShoppingCart,
+        title: "E-commerce Stores",
+        description:
+            "Online stores handling product questions, order updates, shipping enquiries, and returns.",
+    },
+    {
+        icon: Layers,
+        title: "D2C Brands",
+        description:
+            "Direct-to-consumer brands looking to build stronger relationships with their customers.",
+    },
+    {
+        icon: MessageSquare,
+        title: "Growing Businesses",
+        description:
+            "Businesses receiving increasing customer enquiries that need a structured support process.",
+    },
+    {
+        icon: Globe2Icon,
+        title: "Online Service Providers",
+        description:
+            "Service-based businesses that need assistance answering website visitor and customer questions.",
+    },
 ];
+
+/* ==================================
+   HOW RIMAX DELIVERS
+================================== */
+
+const process = [
+    {
+        number: "01",
+        icon: ClipboardList,
+        title: "Understand Your Business",
+        description:
+            "We discuss your products, customers, common enquiries, support requirements, and preferred coverage hours.",
+    },
+    {
+        number: "02",
+        icon: Settings,
+        title: "Set Up Workflows",
+        description:
+            "We establish response guidelines, escalation procedures, chat platform access, and communication processes.",
+    },
+    {
+        number: "03",
+        icon: PlayCircle,
+        title: "Begin Chat Support",
+        description:
+            "Our assigned team starts handling customer conversations according to the agreed scope and schedule.",
+    },
+    {
+        number: "04",
+        icon: BarChart3,
+        title: "Monitor & Improve",
+        description:
+            "We review service activity, share agreed updates, and refine workflows based on customer needs and feedback.",
+    },
+];
+
+/* ==================================
+   CLIENT REQUIREMENTS
+================================== */
+
+const requirements = [
+    {
+        icon: BookOpen,
+        title: "Product & Service Information",
+        description:
+            "Product details, pricing information, policies, and answers to frequently asked customer questions.",
+    },
+    {
+        icon: KeyRound,
+        title: "Chat Platform Access",
+        description:
+            "Appropriate access to your website chat platform or customer support software.",
+    },
+    {
+        icon: FileText,
+        title: "Support Guidelines",
+        description:
+            "Approved response instructions, refund policies, escalation contacts, and communication preferences.",
+    },
+    {
+        icon: Users,
+        title: "Point of Contact",
+        description:
+            "A designated person from your business to coordinate onboarding, approvals, and escalations.",
+    },
+];
+
+/* ==================================
+   ENGAGEMENT MODELS
+================================== */
+
+const packages = [
+    {
+        icon: Clock3,
+        title: "Part-Time Support",
+        subtitle: "For businesses with moderate chat volumes",
+        features: [
+            "Scheduled support hours",
+            "Customer enquiry handling",
+            "Basic conversation reporting",
+            "Agreed escalation procedures",
+        ],
+        highlighted: false,
+    },
+    {
+        icon: UserRound,
+        title: "Dedicated Support",
+        subtitle: "For businesses needing consistent assistance",
+        features: [
+            "Assigned support resources",
+            "Agreed daily coverage",
+            "Brand-specific response guidelines",
+            "Regular communication and reporting",
+        ],
+        highlighted: true,
+    },
+    {
+        icon: CalendarDays,
+        title: "Custom Coverage",
+        subtitle: "For businesses with specific operational needs",
+        features: [
+            "Flexible staffing arrangements",
+            "Extended or 24/7 coverage options",
+            "Custom workflows and escalation rules",
+            "Support scaled to expected chat demand",
+        ],
+        highlighted: false,
+    },
+];
+
+/* ==================================
+   LIVE CHAT FAQs
+================================== */
+
+const faqs = [
+    {
+        question: "What types of customer enquiries can RiMax handle?",
+        answer:
+            "We can assist with product questions, order updates, delivery enquiries, returns, refunds, general customer assistance, and pre-sales questions. The exact responsibilities are agreed upon during onboarding.",
+    },
+    {
+        question: "Can RiMax provide 24/7 live chat support?",
+        answer:
+            "Yes. We can discuss arranging 24/7 coverage based on your business requirements, expected chat volume, onboarding timeline, and agreed staffing arrangements.",
+    },
+    {
+        question: "Do I need to change my existing live chat platform?",
+        answer:
+            "Not necessarily. We can discuss working with your existing chat platform, subject to its capabilities and the access required for our team.",
+    },
+    {
+        question: "How will your team learn about my business?",
+        answer:
+            "We begin with an onboarding process covering your products, services, customer policies, frequently asked questions, brand communication guidelines, and escalation procedures.",
+    },
+    {
+        question: "How are complicated customer issues handled?",
+        answer:
+            "We follow your approved escalation procedures. Issues outside the agreed support scope are documented and referred to your designated internal contact or responsible team.",
+    },
+    {
+        question: "Can I start with a small support package?",
+        answer:
+            "Yes. We can discuss part-time or limited-hours support initially and review opportunities to expand coverage as your customer enquiry volume grows.",
+    },
+];
+
+/* ==================================
+   REUSABLE SECTION HEADING
+================================== */
+
+function SectionHeading({
+                            label,
+                            title,
+                            description,
+                        }: {
+    label: string;
+    title: string;
+    description?: string;
+}) {
+    return (
+        <div className="mx-auto mb-10 max-w-3xl text-center">
+            <p className="mb-3 text-sm font-bold uppercase tracking-[3px] text-blue-700">
+                {label}
+            </p>
+
+            <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                {title}
+            </h2>
+
+            {description && (
+                <p className="mt-4 text-base leading-7 text-gray-600 sm:text-lg">
+                    {description}
+                </p>
+            )}
+        </div>
+    );
+}
+
+/* ==================================
+   MAIN PAGE
+================================== */
 
 export default function LiveChatSupportPage() {
     return (
-        <main className="bg-white">
+        <main className="overflow-hidden bg-white">
 
-            {/* HERO */}
+            {/* ==================================
+                HERO SECTION
+            ================================== */}
 
-            <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+            <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-white">
 
-                {/* Background Effects */}
+                <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-blue-200/40 blur-3xl" />
 
-                <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-blue-500/20 blur-3xl"></div>
+                <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-2 lg:py-20">
 
-                <div className="absolute right-0 top-24 h-[450px] w-[450px] rounded-full bg-cyan-400/20 blur-3xl"></div>
+                    {/* LEFT */}
 
-                <div className="absolute bottom-0 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-indigo-500/10 blur-3xl"></div>
+                    <div>
 
-                <div
-                    className="absolute inset-0 opacity-[0.05]"
-                    style={{
-                        backgroundImage:
-                            "linear-gradient(to right,#2563eb 1px,transparent 1px),linear-gradient(to bottom,#2563eb 1px,transparent 1px)",
-                        backgroundSize: "45px 45px",
-                    }}
-                />
+                        <p className="mb-5 text-sm font-bold uppercase tracking-[3px] text-blue-700">
+                            RiMax Customer Experience Solutions
+                        </p>
 
-                <div className="relative mx-auto max-w-7xl px-6 py-24">
+                        <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
+                            Professional
+                            <span className="block text-blue-700">
+                                Live Chat Support
+                            </span>
+                            for Your Business
+                        </h1>
 
-                    <div className="grid items-center gap-16 lg:grid-cols-2">
+                        <p className="mt-6 max-w-xl text-lg leading-8 text-gray-600">
+                            Give your customers a reliable way to connect
+                            with your business. RiMax helps manage live chat
+                            conversations, answer enquiries, assist with
+                            orders, and escalate issues through structured,
+                            brand-aligned support.
+                        </p>
 
-                        {/* LEFT */}
+                        <div className="mt-8 flex flex-wrap gap-4">
 
-                        <div>
+                            <Link
+                                href="/#contact"
+                                className="inline-flex items-center gap-2 rounded-xl bg-blue-700 px-7 py-4 font-semibold text-white shadow-lg transition hover:-translate-y-1 hover:bg-blue-800"
+                            >
+                                Get Free Consultation
+                                <ArrowUpRight size={19} />
+                            </Link>
 
-              <span className="rounded-full bg-blue-100 px-5 py-2 text-sm font-semibold uppercase tracking-widest text-blue-700">
-                RiMax Technologies
-              </span>
-
-                            <h1 className="mt-8 text-5xl font-extrabold leading-tight text-gray-900 lg:text-7xl">
-                                Professional
-                                <span className="block bg-gradient-to-r from-blue-700 via-indigo-600 to-cyan-500 bg-clip-text text-transparent">
-                  Live Chat Support
-                </span>
-                            </h1>
-
-                            <p className="mt-8 text-xl leading-9 text-gray-600">
-
-                                Deliver exceptional customer experiences through
-                                professional live chat support.
-
-                                Our trained specialists answer customer questions,
-                                resolve issues instantly,
-                                qualify leads,
-                                and represent your business with professionalism,
-                                helping you improve customer satisfaction and build long-term relationships.
-
-                            </p>
-
-                            <div className="mt-10 flex flex-wrap gap-5">
-
-                                <Link
-                                    href="/#contact"
-                                    className="rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-4 font-semibold text-white shadow-xl transition hover:-translate-y-1 hover:shadow-2xl"
-                                >
-                                    Get Free Consultation
-                                </Link>
-
-                                <Link
-                                    href="/#services"
-                                    className="rounded-xl border border-gray-300 bg-white/80 px-8 py-4 font-semibold text-gray-700 backdrop-blur transition hover:bg-white"
-                                >
-                                    Explore Services
-                                </Link>
-
-                            </div>
-
-                            <div className="mt-14 grid grid-cols-3 gap-6">
-
-                                <div>
-                                    <h3 className="text-3xl font-bold text-blue-700">24/7</h3>
-                                    <p className="mt-2 text-gray-600">
-                                        Live Support
-                                    </p>
-                                </div>
-
-                                <div>
-                                    <h3 className="text-3xl font-bold text-blue-700">
-                                        Multi
-                                    </h3>
-                                    <p className="mt-2 text-gray-600">
-                                        Time Zones
-                                    </p>
-                                </div>
-
-                                <div>
-                                    <h3 className="text-3xl font-bold text-blue-700">
-                                        Fast
-                                    </h3>
-                                    <p className="mt-2 text-gray-600">
-                                        Response
-                                    </p>
-                                </div>
-
-                            </div>
+                            <a
+                                href="#service-includes"
+                                className="inline-flex items-center gap-2 rounded-xl border border-gray-300 bg-white px-7 py-4 font-semibold text-gray-800 transition hover:border-blue-500 hover:text-blue-700"
+                            >
+                                Explore Live Chat Support
+                                <ArrowRight size={18} />
+                            </a>
 
                         </div>
 
-                        {/* RIGHT */}
+                        <div className="mt-8 flex flex-wrap gap-4 text-sm font-medium text-gray-700">
 
-                        <div className="relative">
+                            <span className="flex items-center gap-2">
+                                <CheckCircle2 size={18} className="text-blue-700" />
+                                Flexible Coverage
+                            </span>
 
-                            <div className="absolute -right-4 -top-4 rounded-2xl bg-white px-6 py-4 shadow-xl">
-                                <p className="font-semibold text-green-600">
-                                    ✓ 24/7 Available
-                                </p>
+                            <span className="flex items-center gap-2">
+                                <CheckCircle2 size={18} className="text-blue-700" />
+                                Brand-Aligned Responses
+                            </span>
+
+                            <span className="flex items-center gap-2">
+                                <CheckCircle2 size={18} className="text-blue-700" />
+                                Structured Escalations
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    {/* RIGHT - CHAT PREVIEW */}
+
+                    <div className="relative mx-auto w-full max-w-lg">
+
+                        <div className="rounded-3xl border border-blue-100 bg-white p-5 shadow-2xl sm:p-7">
+
+                            <div className="flex items-center gap-4 border-b border-gray-100 pb-5">
+
+                                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100">
+                                    <MessageSquare size={28} className="text-blue-700" />
+                                </div>
+
+                                <div>
+                                    <h2 className="text-lg font-bold text-gray-900">
+                                        Customer Support
+                                    </h2>
+
+                                    <p className="text-sm text-gray-500">
+                                        Example customer conversation
+                                    </p>
+                                </div>
+
                             </div>
 
-                            <div className="absolute -bottom-4 -left-4 rounded-2xl bg-white px-6 py-4 shadow-xl">
-                                <p className="font-semibold text-blue-700">
-                                    ⚡ Instant Response
-                                </p>
-                            </div>
+                            <div className="space-y-5 py-7">
 
-                            <div className="rounded-[32px] border border-white/50 bg-white/70 p-10 shadow-2xl backdrop-blur-xl">
+                                <div className="flex justify-end">
 
-                                <div className="mb-8 flex h-24 w-24 items-center justify-center rounded-3xl bg-gradient-to-br from-blue-100 to-cyan-100">
-
-                                    <Headset
-                                        size={48}
-                                        className="text-blue-700"
-                                    />
+                                    <div className="max-w-[85%] rounded-2xl rounded-tr-sm bg-blue-700 px-5 py-4 text-sm leading-6 text-white">
+                                        Hi! Can you help me check the
+                                        delivery status of my order?
+                                    </div>
 
                                 </div>
 
-                                <h2 className="text-4xl font-bold text-gray-900">
-                                    Your Customers Deserve Better Support
-                                </h2>
+                                <div className="flex justify-start">
 
-                                <p className="mt-6 text-lg leading-8 text-gray-600">
-
-                                    Our experienced live chat specialists provide
-                                    immediate assistance,
-                                    resolve customer concerns,
-                                    answer product questions,
-                                    and deliver friendly support that improves
-                                    customer satisfaction and trust.
-
-                                </p>
-
-                                <div className="mt-10 space-y-4">
-
-                                    <div className="flex items-center gap-3 rounded-xl bg-blue-50 p-4">
-                                        <CheckCircle2 className="text-blue-700" />
-                                        <span>Professional Customer Communication</span>
-                                    </div>
-
-                                    <div className="flex items-center gap-3 rounded-xl bg-blue-50 p-4">
-                                        <CheckCircle2 className="text-blue-700" />
-                                        <span>Quick Issue Resolution</span>
-                                    </div>
-
-                                    <div className="flex items-center gap-3 rounded-xl bg-blue-50 p-4">
-                                        <CheckCircle2 className="text-blue-700" />
-                                        <span>Real-Time Customer Assistance</span>
+                                    <div className="max-w-[85%] rounded-2xl rounded-tl-sm bg-gray-100 px-5 py-4 text-sm leading-6 text-gray-800">
+                                        Of course! Please share your
+                                        order number so I can check
+                                        the available details.
                                     </div>
 
                                 </div>
+
+                                <div className="flex justify-end">
+
+                                    <div className="max-w-[85%] rounded-2xl rounded-tr-sm bg-blue-700 px-5 py-4 text-sm leading-6 text-white">
+                                        Sure, my order number is #12345.
+                                    </div>
+
+                                </div>
+
+                                <div className="flex justify-start">
+
+                                    <div className="max-w-[85%] rounded-2xl rounded-tl-sm bg-gray-100 px-5 py-4 text-sm leading-6 text-gray-800">
+                                        Thank you! I'll check the
+                                        order information and guide
+                                        you through the next steps.
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div className="flex items-center gap-3 rounded-xl bg-blue-50 p-4">
+
+                                <ShieldCheck size={21} className="text-blue-700" />
+
+                                <p className="text-sm font-medium text-gray-700">
+                                    Professional, brand-aligned customer conversations
+                                </p>
 
                             </div>
 
@@ -239,91 +443,48 @@ export default function LiveChatSupportPage() {
 
             </section>
 
-            {/* ABOUT */}
+            {/* ==================================
+                1. WHAT SERVICE INCLUDES
+            ================================== */}
 
-            <section className="py-20">
-
-                <div className="mx-auto max-w-6xl px-6 text-center">
-
-          <span className="text-sm font-semibold uppercase tracking-widest text-blue-700">
-            WHAT WE OFFER
-          </span>
-
-                    <h2 className="mt-4 text-5xl font-bold text-gray-900">
-                        Professional Live Chat Support
-                    </h2>
-
-                    <p className="mx-auto mt-8 max-w-4xl text-lg leading-9 text-gray-600">
-
-                        Live chat has become one of the fastest and most preferred ways
-                        for customers to connect with businesses. At RiMax Technologies,
-                        we provide highly trained support professionals who engage visitors,
-                        answer questions, resolve customer concerns, guide purchasing
-                        decisions, and create positive customer experiences that strengthen
-                        your brand reputation.
-
-                    </p>
-
-                </div>
-
-            </section>
-
-            {/* FEATURES */}
-
-            <section className="bg-gray-50 py-20">
+            <section
+                id="service-includes"
+                className="scroll-mt-24 py-16 sm:py-20"
+            >
 
                 <div className="mx-auto max-w-7xl px-6">
 
-                    <div className="text-center">
+                    <SectionHeading
+                        label="What's Included"
+                        title="What Our Live Chat Support Covers"
+                        description="Practical customer-facing assistance tailored to your business processes and support guidelines."
+                    />
 
-            <span className="text-sm font-semibold uppercase tracking-widest text-blue-700">
-              FEATURES
-            </span>
+                    <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
 
-                        <h2 className="mt-4 text-5xl font-bold text-gray-900">
-                            Everything You Need
-                        </h2>
+                        {inclusions.map((item) => {
 
-                        <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-600">
-                            RiMax Technologies provides comprehensive live chat support
-                            solutions designed to improve customer engagement,
-                            increase satisfaction,
-                            and help businesses deliver exceptional customer service.
-                        </p>
-
-                    </div>
-
-                    <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-
-                        {features.map((feature) => {
-                            const Icon = feature.icon;
+                            const Icon = item.icon;
 
                             return (
-
                                 <div
-                                    key={feature.title}
-                                    className="group rounded-3xl border border-gray-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-blue-300 hover:shadow-2xl"
+                                    key={item.title}
+                                    className="group rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg"
                                 >
 
-                                    <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-100 transition group-hover:bg-blue-600">
-
-                                        <Icon
-                                            size={32}
-                                            className="text-blue-700 transition group-hover:text-white"
-                                        />
-
+                                    <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50">
+                                        <Icon size={24} className="text-blue-700" />
                                     </div>
 
-                                    <h3 className="mb-4 text-2xl font-bold text-gray-900">
-                                        {feature.title}
+                                    <h3 className="mb-3 text-lg font-bold text-gray-900">
+                                        {item.title}
                                     </h3>
 
-                                    <p className="leading-8 text-gray-600">
-                                        {feature.description}
+                                    <p className="text-sm leading-7 text-gray-600">
+                                        {item.description}
                                     </p>
 
                                 </div>
-
                             );
 
                         })}
@@ -334,93 +495,48 @@ export default function LiveChatSupportPage() {
 
             </section>
 
-            {/* BENEFITS */}
+            {/* ==================================
+                2. WHO NEEDS THIS SERVICE
+            ================================== */}
 
-            <section className="py-20">
+            <section className="bg-gray-50 py-16 sm:py-20">
 
                 <div className="mx-auto max-w-7xl px-6">
 
-                    <div className="grid items-center gap-20 lg:grid-cols-2">
+                    <SectionHeading
+                        label="Who We Help"
+                        title="Who Needs Live Chat Support?"
+                        description="Designed for businesses that want to make customer communication more organised and accessible."
+                    />
 
-                        <div>
+                    <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
 
-              <span className="text-sm font-semibold uppercase tracking-widest text-blue-700">
-                WHY RIMAX
-              </span>
+                        {audiences.map((item) => {
 
-                            <h2 className="mt-4 text-5xl font-bold text-gray-900">
-                                Why Businesses Choose RiMax
-                            </h2>
+                            const Icon = item.icon;
 
-                            <p className="mt-8 text-lg leading-8 text-gray-600">
+                            return (
+                                <div
+                                    key={item.title}
+                                    className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+                                >
 
-                                We don't simply answer customer questions.
-
-                                We become an extension of your business,
-                                representing your brand with professionalism,
-                                empathy,
-                                and consistent communication that strengthens
-                                customer trust.
-
-                            </p>
-
-                            <div className="mt-10 grid gap-5">
-
-                                {benefits.map((benefit) => (
-
-                                    <div
-                                        key={benefit}
-                                        className="flex items-center gap-4 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm"
-                                    >
-
-                                        <CheckCircle2
-                                            className="text-blue-700"
-                                            size={24}
-                                        />
-
-                                        <span className="text-lg font-medium text-gray-800">
-                      {benefit}
-                    </span>
-
+                                    <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50">
+                                        <Icon size={24} className="text-blue-700" />
                                     </div>
 
-                                ))}
+                                    <h3 className="mb-3 text-lg font-bold text-gray-900">
+                                        {item.title}
+                                    </h3>
 
-                            </div>
+                                    <p className="text-sm leading-7 text-gray-600">
+                                        {item.description}
+                                    </p>
 
-                        </div>
+                                </div>
+                            );
 
-                        <div>
-
-                            <div className="rounded-[32px] bg-gradient-to-br from-blue-600 to-indigo-700 p-10 text-white shadow-2xl">
-
-                                <Zap
-                                    size={60}
-                                    className="mb-8"
-                                />
-
-                                <h3 className="text-4xl font-bold">
-                                    Faster Responses.
-                                    Better Experiences.
-                                </h3>
-
-                                <p className="mt-6 text-lg leading-8 text-blue-100">
-
-                                    Customers expect quick,
-                                    friendly,
-                                    and professional support.
-
-                                    Our dedicated live chat specialists help
-                                    your business provide instant assistance,
-                                    reduce waiting times,
-                                    and create memorable customer experiences
-                                    that encourage loyalty and long-term growth.
-
-                                </p>
-
-                            </div>
-
-                        </div>
+                        })}
 
                     </div>
 
@@ -428,48 +544,304 @@ export default function LiveChatSupportPage() {
 
             </section>
 
-            {/* CTA */}
+            {/* ==================================
+                3. HOW RIMAX DELIVERS IT
+            ================================== */}
 
-            <section className="relative overflow-hidden bg-gradient-to-r from-blue-700 to-indigo-700 py-24 text-white">
+            <section className="py-16 sm:py-20">
 
-                <div className="absolute inset-0 opacity-10">
+                <div className="mx-auto max-w-7xl px-6">
 
-                    <div
-                        className="h-full w-full"
-                        style={{
-                            backgroundImage:
-                                "linear-gradient(to right,#ffffff 1px,transparent 1px),linear-gradient(to bottom,#ffffff 1px,transparent 1px)",
-                            backgroundSize: "45px 45px",
-                        }}
+                    <SectionHeading
+                        label="Our Delivery Process"
+                        title="How RiMax Delivers Live Chat Support"
+                        description="A structured onboarding and delivery approach designed around your business requirements."
                     />
+
+                    <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+
+                        {process.map((step) => {
+
+                            const Icon = step.icon;
+
+                            return (
+                                <div
+                                    key={step.number}
+                                    className="relative rounded-2xl border border-gray-200 bg-white p-6 shadow-sm"
+                                >
+
+                                    <div className="mb-5 flex items-center justify-between">
+
+                                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50">
+                                            <Icon size={24} className="text-blue-700" />
+                                        </div>
+
+                                        <span className="text-3xl font-extrabold text-blue-100">
+                                            {step.number}
+                                        </span>
+
+                                    </div>
+
+                                    <h3 className="mb-3 text-lg font-bold text-gray-900">
+                                        {step.title}
+                                    </h3>
+
+                                    <p className="text-sm leading-7 text-gray-600">
+                                        {step.description}
+                                    </p>
+
+                                </div>
+                            );
+
+                        })}
+
+                    </div>
 
                 </div>
 
-                <div className="relative mx-auto max-w-5xl px-6 text-center">
+            </section>
 
-                    <h2 className="text-5xl font-bold">
-                        Ready to Transform Your Customer Support?
+            {/* ==================================
+                4. CLIENT REQUIREMENTS
+            ================================== */}
+
+            <section className="bg-gray-50 py-16 sm:py-20">
+
+                <div className="mx-auto max-w-7xl px-6">
+
+                    <SectionHeading
+                        label="Getting Started"
+                        title="What We Need From Your Business"
+                        description="A few essential details help us prepare your support workflows and represent your brand accurately."
+                    />
+
+                    <div className="grid gap-5 md:grid-cols-2">
+
+                        {requirements.map((item) => {
+
+                            const Icon = item.icon;
+
+                            return (
+                                <div
+                                    key={item.title}
+                                    className="flex gap-4 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm"
+                                >
+
+                                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-50">
+                                        <Icon size={24} className="text-blue-700" />
+                                    </div>
+
+                                    <div>
+
+                                        <h3 className="mb-2 text-lg font-bold text-gray-900">
+                                            {item.title}
+                                        </h3>
+
+                                        <p className="text-sm leading-7 text-gray-600">
+                                            {item.description}
+                                        </p>
+
+                                    </div>
+
+                                </div>
+                            );
+
+                        })}
+
+                    </div>
+
+                    <div className="mt-7 rounded-2xl border border-blue-100 bg-blue-50 p-5">
+
+                        <p className="text-sm leading-7 text-blue-900">
+                            <strong>Note:</strong> Required access and onboarding
+                            information depend on your existing systems,
+                            support scope, and agreed responsibilities.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            {/* ==================================
+                5. ENGAGEMENT MODELS
+            ================================== */}
+
+            <section className="py-16 sm:py-20">
+
+                <div className="mx-auto max-w-7xl px-6">
+
+                    <SectionHeading
+                        label="Flexible Engagement"
+                        title="Choose the Right Support Arrangement"
+                        description="We discuss staffing, coverage, and responsibilities based on your customer demand and business goals."
+                    />
+
+                    <div className="grid gap-6 lg:grid-cols-3">
+
+                        {packages.map((item) => {
+
+                            const Icon = item.icon;
+
+                            return (
+                                <div
+                                    key={item.title}
+                                    className={`flex h-full flex-col rounded-3xl border p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
+                                        item.highlighted
+                                            ? "border-blue-500 bg-blue-50 shadow-lg"
+                                            : "border-gray-200 bg-white shadow-sm"
+                                    }`}
+                                >
+
+                                    <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-white shadow-sm">
+                                        <Icon size={27} className="text-blue-700" />
+                                    </div>
+
+                                    <h3 className="text-2xl font-bold text-gray-900">
+                                        {item.title}
+                                    </h3>
+
+                                    <p className="mt-3 text-sm leading-6 text-gray-600">
+                                        {item.subtitle}
+                                    </p>
+
+                                    <div className="my-6 border-t border-gray-200" />
+
+                                    <ul className="mb-8 flex-grow space-y-4">
+
+                                        {item.features.map((feature) => (
+                                            <li
+                                                key={feature}
+                                                className="flex items-start gap-3 text-sm leading-6 text-gray-700"
+                                            >
+                                                <CheckCircle2
+                                                    size={19}
+                                                    className="mt-0.5 shrink-0 text-blue-700"
+                                                />
+
+                                                <span>{feature}</span>
+                                            </li>
+                                        ))}
+
+                                    </ul>
+
+                                    <Link
+                                        href="/#contact"
+                                        className={`inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold transition ${
+                                            item.highlighted
+                                                ? "bg-blue-700 text-white hover:bg-blue-800"
+                                                : "border border-blue-200 bg-white text-blue-700 hover:bg-blue-50"
+                                        }`}
+                                    >
+                                        Discuss This Option
+                                        <ArrowUpRight size={18} />
+                                    </Link>
+
+                                </div>
+                            );
+
+                        })}
+
+                    </div>
+
+                    <p className="mt-6 text-center text-sm leading-6 text-gray-500">
+                        Coverage schedules, staffing, pricing, and service
+                        responsibilities are confirmed during consultation.
+                    </p>
+
+                </div>
+
+            </section>
+
+            {/* ==================================
+                6. FAQ SECTION
+            ================================== */}
+
+            <section className="bg-gray-50 py-16 sm:py-20">
+
+                <div className="mx-auto max-w-6xl px-6">
+
+                    <SectionHeading
+                        label="Common Questions"
+                        title="Live Chat Support FAQs"
+                        description="Answers to common questions about our live chat services and onboarding process."
+                    />
+
+                    <div className="grid items-start gap-4 md:grid-cols-2">
+
+                        {faqs.map((faq, index) => (
+
+                            <details
+                                key={faq.question}
+                                className="group rounded-2xl border border-gray-200 bg-white p-5 shadow-sm open:border-blue-200 open:shadow-md"
+                            >
+
+                                <summary className="flex cursor-pointer list-none items-start justify-between gap-3 font-semibold text-gray-900 [&::-webkit-details-marker]:hidden">
+
+                                    <span className="flex items-start gap-3">
+
+                                        <span className="text-blue-700">
+                                            {String(index + 1).padStart(2, "0")}
+                                        </span>
+
+                                        <span className="text-sm leading-6 sm:text-base">
+                                            {faq.question}
+                                        </span>
+
+                                    </span>
+
+                                    <ChevronDown
+                                        size={19}
+                                        className="mt-1 shrink-0 text-blue-700 transition-transform group-open:rotate-180"
+                                    />
+
+                                </summary>
+
+                                <div className="mt-4 border-t border-gray-100 pt-4 text-sm leading-7 text-gray-600">
+                                    {faq.answer}
+                                </div>
+
+                            </details>
+
+                        ))}
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            {/* ==================================
+                7. CONSULTATION CTA
+            ================================== */}
+
+            <section className="relative overflow-hidden bg-gradient-to-r from-blue-700 to-indigo-700 py-16 text-white sm:py-20">
+
+                <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+
+                <div className="relative mx-auto max-w-4xl px-6 text-center">
+
+                    <p className="mb-4 text-sm font-bold uppercase tracking-[3px] text-blue-100">
+                        Let's Work Together
+                    </p>
+
+                    <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl">
+                        Ready to Improve Your Customer Conversations?
                     </h2>
 
-                    <p className="mx-auto mt-8 max-w-3xl text-xl leading-9 text-blue-100">
-
-                        Let RiMax Technologies provide professional,
-                        reliable,
-                        and customer-focused live chat support that
-                        helps your business improve customer satisfaction
-                        while allowing your team to focus on growth.
-
+                    <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-blue-100">
+                        Tell us about your business, expected chat volume,
+                        and support requirements. We'll discuss a suitable
+                        live chat support arrangement for your team.
                     </p>
 
                     <Link
                         href="/#contact"
-                        className="mt-12 inline-flex items-center gap-3 rounded-2xl bg-white px-10 py-5 text-lg font-bold text-blue-700 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+                        className="mt-8 inline-flex items-center gap-3 rounded-xl bg-white px-8 py-4 font-bold text-blue-700 shadow-lg transition hover:-translate-y-1 hover:shadow-xl"
                     >
-
-                        Contact RiMax Today
-
-                        <ArrowRight size={22} />
-
+                        Get Free Consultation
+                        <ArrowUpRight size={20} />
                     </Link>
 
                 </div>
@@ -477,7 +849,33 @@ export default function LiveChatSupportPage() {
             </section>
 
         </main>
-
     );
+}
 
+/* ==================================
+   SMALL CUSTOM ICON COMPONENT
+================================== */
+
+function Globe2Icon({ size = 24, className = "" }: {
+    size?: number;
+    className?: string;
+}) {
+    return (
+        <svg
+            width={size}
+            height={size}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className={className}
+            aria-hidden="true"
+        >
+            <circle cx="12" cy="12" r="10" />
+            <path d="M2 12h20" />
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+        </svg>
+    );
 }

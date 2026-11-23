@@ -3,44 +3,108 @@ import Link from "next/link";
 import {
     Mail,
     MapPin,
-    Phone,
     ArrowRight,
 } from "lucide-react";
+
+/* ==========================================
+   QUICK LINKS
+========================================== */
+
+const quickLinks = [
+    { label: "Home", href: "/" },
+    { label: "About", href: "/#about" },
+    { label: "Services", href: "/#services" },
+
+    // Temporarily hidden until RiMax expands
+    // { label: "Industries", href: "/#industries" },
+
+    { label: "Why RiMax", href: "/#why-rimax" },
+    { label: "Our Process", href: "/#process" },
+    { label: "Contact", href: "/#contact" },
+];
+
+/* ==========================================
+   SERVICES
+========================================== */
+
+const services = [
+    {
+        label: "Live Chat Support",
+        href: "/services/live-chat-support",
+    },
+    {
+        label: "Email Support",
+        href: "/services/email-support",
+    },
+    {
+        label: "Customer Support",
+        href: "/services/customer-support",
+    },
+    {
+        label: "Business Operations Support",
+        href: "/services/business-operations-support",
+    },
+    {
+        label: "Social Media Management",
+        href: "/services/social-media-management",
+    },
+    {
+        label: "Digital Marketing Support",
+        href: "/services/digital-marketing-support",
+    },
+];
+
+/* ==========================================
+   FOOTER COMPONENT
+========================================== */
 
 export default function Footer() {
     return (
         <footer className="bg-slate-950 text-white">
 
-            <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 md:grid-cols-2 lg:grid-cols-5">
+            {/* MAIN FOOTER */}
 
-                {/* Company */}
+            <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 md:grid-cols-2 lg:grid-cols-4">
+
+                {/* COMPANY */}
 
                 <div className="lg:col-span-2">
 
-                    <Image
-                        src="/logos/rimax-logo-v2.png"
-                        alt="RiMax Technologies"
-                        width={180}
-                        height={70}
-                        className="mb-6 rounded bg-white p-2"
-                    />
+                    <Link href="/" className="inline-block">
 
-                    <p className="mb-8 max-w-md leading-8 text-gray-400">
-                        RiMax Technologies provides customer support,
-                        technical assistance, dedicated teams, and
-                        technology solutions that help businesses
-                        deliver exceptional customer experiences.
+                        <Image
+                            src="/logos/rimax-logo-v2.png"
+                            alt="RiMax Technologies"
+                            width={180}
+                            height={70}
+                            className="mb-6 rounded-xl bg-white p-3"
+                        />
+
+                    </Link>
+
+                    <p className="mb-8 max-w-md text-sm leading-8 text-gray-400">
+                        RiMax Technologies provides flexible business
+                        support solutions, including customer service,
+                        live chat, email support, business operations,
+                        social media management, and digital marketing
+                        support. We help businesses streamline daily
+                        operations and strengthen customer experiences.
                     </p>
+
+                    {/* CONTACT DETAILS */}
 
                     <div className="space-y-4">
 
                         <div className="flex items-center gap-3">
 
-                            <Mail size={18} className="text-blue-400" />
+                            <Mail
+                                size={18}
+                                className="shrink-0 text-blue-400"
+                            />
 
                             <a
                                 href="mailto:contact@rimaxtech.com"
-                                className="text-gray-300 transition hover:text-white"
+                                className="text-sm text-gray-300 transition hover:text-white"
                             >
                                 contact@rimaxtech.com
                             </a>
@@ -49,21 +113,14 @@ export default function Footer() {
 
                         <div className="flex items-center gap-3">
 
-                            <MapPin size={18} className="text-blue-400" />
+                            <MapPin
+                                size={18}
+                                className="shrink-0 text-blue-400"
+                            />
 
-                            <span className="text-gray-300">
-                Hyderabad, India
-              </span>
-
-                        </div>
-
-                        <div className="flex items-center gap-3">
-
-                            <Phone size={18} className="text-blue-400" />
-
-                            <span className="text-gray-300">
-                Available Upon Request
-              </span>
+                            <span className="text-sm text-gray-300">
+                                Hyderabad, India
+                            </span>
 
                         </div>
 
@@ -71,121 +128,113 @@ export default function Footer() {
 
                 </div>
 
-                {/* Quick Links */}
+                {/* QUICK LINKS */}
 
                 <div>
 
-                    <h3 className="mb-6 text-xl font-bold">
+                    <h3 className="mb-6 text-lg font-bold">
                         Quick Links
                     </h3>
 
                     <ul className="space-y-4">
 
-                        <li>
-                            <Link
-                                href="/"
-                                className="flex items-center gap-2 text-gray-400 transition hover:text-white"
-                            >
-                                <ArrowRight size={16} />
-                                Home
-                            </Link>
-                        </li>
+                        {quickLinks.map((link) => (
+                            <li key={link.label}>
 
-                        <li>
-                            <Link
-                                href="/#about"
-                                className="flex items-center gap-2 text-gray-400 transition hover:text-white"
-                            >
-                                <ArrowRight size={16} />
-                                About
-                            </Link>
-                        </li>
+                                <Link
+                                    href={link.href}
+                                    className="group flex items-center gap-2 text-sm text-gray-400 transition hover:text-white"
+                                >
 
-                        <li>
-                            <Link
-                                href="/#services"
-                                className="flex items-center gap-2 text-gray-400 transition hover:text-white"
-                            >
-                                <ArrowRight size={16} />
-                                Services
-                            </Link>
-                        </li>
+                                    <ArrowRight
+                                        size={15}
+                                        className="text-blue-400 transition group-hover:translate-x-1"
+                                    />
 
-                        <li>
-                            <Link
-                                href="/#industries"
-                                className="flex items-center gap-2 text-gray-400 transition hover:text-white"
-                            >
-                                <ArrowRight size={16} />
-                                Industries
-                            </Link>
-                        </li>
+                                    {link.label}
 
-                        <li>
-                            <Link
-                                href="/#contact"
-                                className="flex items-center gap-2 text-gray-400 transition hover:text-white"
-                            >
-                                <ArrowRight size={16} />
-                                Contact
-                            </Link>
-                        </li>
+                                </Link>
+
+                            </li>
+                        ))}
 
                     </ul>
 
                 </div>
 
-                {/* Services */}
+                {/* SERVICES */}
 
                 <div>
 
-                    <h3 className="mb-6 text-xl font-bold">
-                        Services
+                    <h3 className="mb-6 text-lg font-bold">
+                        Our Services
                     </h3>
 
-                    <ul className="space-y-4 text-gray-400">
+                    <ul className="space-y-4">
 
-                        <li>Live Chat Support</li>
-                        <li>Email Support</li>
-                        <li>Technical Support</li>
-                        <li>Dedicated Teams</li>
-                        <li>AI Automation</li>
+                        {services.map((service) => (
+                            <li key={service.label}>
+
+                                <Link
+                                    href={service.href}
+                                    className="group flex items-start gap-2 text-sm text-gray-400 transition hover:text-white"
+                                >
+
+                                    <ArrowRight
+                                        size={15}
+                                        className="mt-0.5 shrink-0 text-blue-400 transition group-hover:translate-x-1"
+                                    />
+
+                                    <span>
+                                        {service.label}
+                                    </span>
+
+                                </Link>
+
+                            </li>
+                        ))}
 
                     </ul>
 
                 </div>
 
-                {/* Industries */}
+                {/* ==================================
+                    INDUSTRIES - TEMPORARILY HIDDEN
 
+                    Restore this section when
+                    RiMax launches industry pages.
+                ================================== */}
+
+                {/*
                 <div>
-
-                    <h3 className="mb-6 text-xl font-bold">
+                    <h3 className="mb-6 text-lg font-bold">
                         Industries
                     </h3>
 
                     <ul className="space-y-4 text-gray-400">
-
                         <li>Healthcare</li>
                         <li>E-Commerce</li>
                         <li>Banking</li>
                         <li>SaaS</li>
                         <li>Logistics</li>
-
                     </ul>
-
                 </div>
+                */}
 
             </div>
 
+            {/* BOTTOM FOOTER */}
+
             <div className="border-t border-slate-800">
 
-                <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 text-gray-400 md:flex-row">
+                <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 text-center md:flex-row md:text-left">
 
-                    <p>
-                        © 2026 RiMax Technologies. All Rights Reserved.
+                    <p className="text-sm text-gray-400">
+                        © {new Date().getFullYear()} RiMax Technologies.
+                        All Rights Reserved.
                     </p>
 
-                    <p>
+                    <p className="text-sm text-gray-400">
                         Designed with ❤️ by RiMax Technologies
                     </p>
 
